@@ -1,15 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MileniaGameProject.Entities;
 
-namespace MileniaGameProjec
+namespace MileniaGameProject
 {
-    public class Game1 : Game
+    public class Milenia : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Game1()
+        private Character _character;
+        private Map _map;
+        
+        public Milenia()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -18,7 +22,9 @@ namespace MileniaGameProjec
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferHeight = 900;
+            _graphics.PreferredBackBufferWidth = 1200;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -27,7 +33,10 @@ namespace MileniaGameProjec
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            
+            
+            _map = new Map(Content.Load<Texture2D>("pallettown"));
+            _character = new Character(Content.Load<Texture2D>("capybara"));
         }
 
         protected override void Update(GameTime gameTime)
@@ -44,8 +53,10 @@ namespace MileniaGameProjec
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            
+            _map.Draw(gameTime, _spriteBatch);
+            _character.Draw(gameTime, _spriteBatch);
 
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }

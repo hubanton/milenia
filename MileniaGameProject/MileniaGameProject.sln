@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MileniaGameProjec", "MileniaGameProjec\MileniaGameProjec.csproj", "{8B366F70-1695-4E11-804B-62937EAF345F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MileniaGameProject", "MileniaGameProject\MileniaGameProject.csproj", "{8B366F70-1695-4E11-804B-62937EAF345F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

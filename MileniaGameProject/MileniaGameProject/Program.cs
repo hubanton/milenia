@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace MileniaGameProjec
+namespace MileniaGameProject
 {
     public static class Program
     {
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new Milenia())
                 game.Run();
         }
     }
