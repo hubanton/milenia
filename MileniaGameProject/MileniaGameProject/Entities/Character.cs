@@ -7,8 +7,11 @@ namespace MileniaGameProject.Entities
     {
         private Texture2D _char;
 
+        public Vector2 Position;
+        
         public Character(Texture2D character)
         {
+            Position = new Vector2(500, 450);
             _char = character;
         }
 
@@ -20,7 +23,7 @@ namespace MileniaGameProject.Entities
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(_char, new Vector2(500, 450), null, Color.White, 0f,
+            spriteBatch.Draw(_char, Position, null, Color.White, 0f,
                 Vector2.Zero, 0.25f, SpriteEffects.None, 0f);
             spriteBatch.End();
         }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MileniaGameProject.Entities;
+using MileniaGameProject.UserInput;
 
 namespace MileniaGameProject
 {
@@ -13,9 +14,8 @@ namespace MileniaGameProject
         private Character _character;
         private Map _map;
         
-        /// <summary>
-        /// Sugondeeez
-        /// </summary>
+        private InputController _inputController;
+        
         public Milenia()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -40,6 +40,7 @@ namespace MileniaGameProject
             
             _map = new Map(Content.Load<Texture2D>("pallettown"));
             _character = new Character(Content.Load<Texture2D>("capybara"));
+            _inputController = new InputController(_character);
         }
 
         protected override void Update(GameTime gameTime)
@@ -47,10 +48,11 @@ namespace MileniaGameProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
             // TODO: Add your update logic here
-
             base.Update(gameTime);
+            
+            //Activates Input Listener for KeyboardControlls
+            _inputController.ProcessControls(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
