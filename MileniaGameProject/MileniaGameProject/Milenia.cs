@@ -13,6 +13,9 @@ namespace MileniaGameProject
         private Character _character;
         private Map _map;
         
+        /// <summary>
+        /// Sugondeeez
+        /// </summary>
         public Milenia()
         {
             _graphics = new GraphicsDeviceManager(this);
