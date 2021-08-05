@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Willi/Desktop/milenia/MileniaGame/MileniaGame/Content/capybara.png</File>
-    <File>C:/Users/Willi/Desktop/milenia/MileniaGame/MileniaGame/Content/pallettown.png</File>
+    <File>C:/Users/anton/RiderProjects/milenia/MileniaGame/MileniaGame/Content/capybara.png</File>
+    <File>C:/Users/anton/RiderProjects/milenia/MileniaGame/MileniaGame/Content/pallettown.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

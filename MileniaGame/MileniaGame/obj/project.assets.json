@@ -174,19 +174,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Willi\\.nuget\\packages\\": {}
+    "C:\\Users\\anton\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Willi\\Desktop\\milenia\\MileniaGame\\MileniaGame\\MileniaGame.csproj",
+      "projectUniqueName": "C:\\Users\\anton\\RiderProjects\\milenia\\MileniaGame\\MileniaGame\\MileniaGame.csproj",
       "projectName": "MileniaGame",
-      "projectPath": "C:\\Users\\Willi\\Desktop\\milenia\\MileniaGame\\MileniaGame\\MileniaGame.csproj",
-      "packagesPath": "C:\\Users\\Willi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Willi\\Desktop\\milenia\\MileniaGame\\MileniaGame\\obj\\",
+      "projectPath": "C:\\Users\\anton\\RiderProjects\\milenia\\MileniaGame\\MileniaGame\\MileniaGame.csproj",
+      "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anton\\RiderProjects\\milenia\\MileniaGame\\MileniaGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Willi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -234,7 +234,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.205\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
