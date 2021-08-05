@@ -1,0 +1,25 @@
+<<<<<<< HEAD
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea
+/modules.xml
+/contentModel.xml
+/.idea.gitexample.iml
+/projectSettingsUpdater.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+.vs
+obj
+bin
+
+=======
+.vs
+bin
+obj
+.idea
+>>>>>>> 
