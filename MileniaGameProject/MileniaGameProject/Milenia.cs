@@ -35,13 +35,12 @@ namespace MileniaGameProject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             
             
-            _mapSmall = new Map(Content.Load<Texture2D>("pallettown"));
-            _mapLarge = new Map(Content.Load<Texture2D>("Oversizedbackground"));
             _character = new Character(Content.Load<Texture2D>("capybara"));
-            _inputController = new InputController(_character);
+            _character.Position = new Vector2(600, 450);
+            _mapLarge = new Map(Content.Load<Texture2D>("Oversizedbackground"));
+            _inputController = new InputController(_character, _mapLarge);
         }
 
         protected override void Update(GameTime gameTime)
@@ -59,8 +58,8 @@ namespace MileniaGameProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _mapLarge.Draw(gameTime, _spriteBatch );
-            //_mapSmall.Draw(gameTime, _spriteBatch);
+            
+            _mapLarge.Draw(gameTime, _spriteBatch);
             _character.Draw(gameTime, _spriteBatch);
 
 

@@ -9,10 +9,12 @@ namespace MileniaGameProject.UserInput
         private KeyboardState _previousKeyboardState;
 
         private Character _character;
+        private Map _map;
 
-        public InputController(Character character)
+        public InputController(Character character, Map map)
         {
             _character = character;
+            _map = map;
         }
         
         public void ProcessControls(GameTime gameTime)
@@ -26,23 +28,42 @@ namespace MileniaGameProject.UserInput
             bool isWalkLeftPressed = _previousKeyboardState.IsKeyDown(Keys.Left) || _previousKeyboardState.IsKeyDown(Keys.A);
             bool isWalkRightPressed = _previousKeyboardState.IsKeyDown(Keys.Right) || _previousKeyboardState.IsKeyDown(Keys.D);
 
-            if (isWalkDownwardsPressed && _character.Position.Y <= 800)
+            if (isWalkDownwardsPressed && _map.Position.Y >= -900 && _character.Position.Y > 325)
             {
-                _character.Position = new Vector2(_character.Position.X, _character.Position.Y + 5);
+                _map.Position.Y -= 5;
             }
-            if (isWalkUpwardsPressed && _character.Position.Y >= 0)
+            else if (isWalkDownwardsPressed && _character.Position.Y <= 775)
             {
-                _character.Position = new Vector2(_character.Position.X, _character.Position.Y - 5);
+                _character.Position.Y += 5;
             }
-            if (isWalkLeftPressed && _character.Position.X >= 0)
+
+            if (isWalkUpwardsPressed && _map.Position.Y <= 0 && _character.Position.Y < 450)
             {
-                _character.Position = new Vector2(_character.Position.X - 5, _character.Position.Y);
+                _map.Position.Y += 5;
             }
-            if (isWalkRightPressed && _character.Position.X <= 1100)
+            else if (isWalkUpwardsPressed && _character.Position.Y >= 0)
             {
-                _character.Position = new Vector2(_character.Position.X + 5, _character.Position.Y);
-            } 
-            
+                _character.Position.Y -= 5;
+            }
+
+            if (isWalkLeftPressed && _map.Position.X <= 0 && _character.Position.X < 600)
+            {
+                _map.Position.X += 5;
+            }
+            else if (isWalkLeftPressed && _character.Position.X >= 0)
+            {
+                _character.Position.X -= 5;
+            }
+
+            if (isWalkRightPressed && _map.Position.X >= -1200 && _character.Position.X > 475)
+            {
+                _map.Position.X -= 5;
+            }
+            else if (isWalkRightPressed && _character.Position.X <= 1005)
+            {
+                _character.Position.X += 5;
+            }
+
             _previousKeyboardState = keyboardState;
             
 
