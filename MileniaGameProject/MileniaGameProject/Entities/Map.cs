@@ -20,7 +20,7 @@ namespace MileniaGameProject.Entities
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(_map, new Rectangle(0, 0, 1200, 900), Color.White);
+            spriteBatch.Draw(_map, new Vector2(-600, -450), Color.White);
             spriteBatch.End();
         }
     }
