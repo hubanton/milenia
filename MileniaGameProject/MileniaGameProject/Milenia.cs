@@ -24,9 +24,16 @@ namespace MileniaGameProject
         }
 
         protected override void Initialize()
-        {
-            _graphics.PreferredBackBufferHeight = 900;
-            _graphics.PreferredBackBufferWidth = 1200;
+        { 
+            // Fetches the current resolution of the users screen and sets it to preferred resolution
+            _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            // Causes the Window to fit the screen size
+            _graphics.IsFullScreen = true;
+            // Tabbing outside of Screen no longer collapses Window
+            _graphics.HardwareModeSwitch = false;
+            
+            //Needed in order to apply previously made changes to window
             _graphics.ApplyChanges();
 
             base.Initialize();
