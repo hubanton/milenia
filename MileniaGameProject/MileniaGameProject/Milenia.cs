@@ -62,8 +62,8 @@ namespace MileniaGameProject
             
             
             _character = new Character(Content.Load<Texture2D>("capybara"), new Vector2(ScreenWidth / 2, ScreenHeight / 2));
-            PlayerWidth = (int) (_character.CharTexture.Width * 0.25f);
-            PlayerHeight = (int) (_character.CharTexture.Height * 0.25f);
+            PlayerWidth = (int) (_character.CharTexture.Width);
+            PlayerHeight = (int) (_character.CharTexture.Height);
             _mapLarge = new Map(Content.Load<Texture2D>("border"), _character.Position);
             _inputController = new InputController(_character, _mapLarge);
         }

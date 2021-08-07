@@ -55,7 +55,7 @@ namespace MileniaGameProject.UserInput
                 _character.Position.Y -= _velocity;
             }
 
-            if (isWalkLeftPressed && _map.Position.X >= 0 && _character.Position.X <= Milenia.ScreenWidth / 2)
+            if (isWalkLeftPressed && _map.Position.X >= 0 && _character.Position.X <= (Milenia.ScreenWidth - Milenia.PlayerWidth) / 2)
             {
                 _map.Position.X -= _velocity;
             }

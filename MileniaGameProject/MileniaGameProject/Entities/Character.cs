@@ -13,8 +13,8 @@ namespace MileniaGameProject.Entities
         {
             Position = pos;
             CharTexture = character;
-            Position.Y -= character.Height * 0.25f / 2;
-            Position.X -= character.Width * 0.25f / 2;
+            Position.Y -= character.Height / 2;
+            Position.X -= character.Width / 2;
         }
 
         public void Update(GameTime gameTime)
@@ -24,8 +24,7 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(CharTexture, Position, null, Color.White, 0f,
-                Vector2.Zero, 0.25f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(CharTexture, Position, Color.White);
         }
     }
 }
