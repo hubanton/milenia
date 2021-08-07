@@ -12,9 +12,18 @@ namespace MileniaGameProject
         private SpriteBatch _spriteBatch;
 
         private Character _character;
-        private Map _mapSmall, _mapLarge;
+        private Map _mapLarge;
         
         private InputController _inputController;
+
+        public static int ScreenWidth;
+        public static int ScreenHeight;
+        public static float ScaleX;
+        public static float ScaleY;
+        public static Matrix ScaleMatrix;
+        public static int PlayerWidth;
+        public static int PlayerHeight;
+
         
         public Milenia()
         {
@@ -24,10 +33,16 @@ namespace MileniaGameProject
         }
 
         protected override void Initialize()
-        { 
-            // Fetches the current resolution of the users screen and sets it to preferred resolution
-            _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        {
+            // Fetches the current resolution of the users screen and sets scale to fit sprites
+            ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            ScaleX = (float)ScreenWidth / 1600;
+            ScaleY = (float)ScreenHeight / 900;
+            ScaleMatrix = Matrix.CreateScale(ScaleX, ScaleY, 1.0f);
+            //  sets to preferred resolution
+            _graphics.PreferredBackBufferWidth = ScreenWidth;
+            _graphics.PreferredBackBufferHeight = ScreenHeight;
             // Causes the Window to fit the screen size
             _graphics.IsFullScreen = true;
             // Tabbing outside of Screen no longer collapses Window
@@ -45,8 +60,10 @@ namespace MileniaGameProject
             
             
             _character = new Character(Content.Load<Texture2D>("capybara"));
-            _character.Position = new Vector2(600, 450);
-            _mapLarge = new Map(Content.Load<Texture2D>("Oversizedbackground"));
+            PlayerWidth = _character.CharTexture.Width;
+            PlayerHeight = _character.CharTexture.Height;
+            _character.Position = new Vector2(ScreenWidth / 2, ScreenHeight / 2);
+            _mapLarge = new Map(Content.Load<Texture2D>("testResolution"), _character.Position);
             _inputController = new InputController(_character, _mapLarge);
         }
 
@@ -59,16 +76,17 @@ namespace MileniaGameProject
             base.Update(gameTime);
             
             //Activates Input Listener for KeyboardControlls
-            _inputController.ProcessControls(gameTime);
+            _inputController.ProcessControls(gameTime, _mapLarge);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
+            _spriteBatch.Begin(transformMatrix: ScaleMatrix);
             _mapLarge.Draw(gameTime, _spriteBatch);
             _character.Draw(gameTime, _spriteBatch);
-
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
