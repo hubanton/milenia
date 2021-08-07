@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MileniaGameProject.Entities;
@@ -59,11 +61,10 @@ namespace MileniaGameProject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
             
-            _character = new Character(Content.Load<Texture2D>("capybara"));
-            PlayerWidth = _character.CharTexture.Width;
-            PlayerHeight = _character.CharTexture.Height;
-            _character.Position = new Vector2(ScreenWidth / 2, ScreenHeight / 2);
-            _mapLarge = new Map(Content.Load<Texture2D>("testResolution"), _character.Position);
+            _character = new Character(Content.Load<Texture2D>("capybara"), new Vector2(ScreenWidth / 2, ScreenHeight / 2));
+            PlayerWidth = (int) (_character.CharTexture.Width * 0.25f);
+            PlayerHeight = (int) (_character.CharTexture.Height * 0.25f);
+            _mapLarge = new Map(Content.Load<Texture2D>("border"), _character.Position);
             _inputController = new InputController(_character, _mapLarge);
         }
 
@@ -75,7 +76,7 @@ namespace MileniaGameProject
             // TODO: Add your update logic here
             base.Update(gameTime);
             
-            //Activates Input Listener for KeyboardControlls
+            //Activates Input Listener for KeyboardControls
             _inputController.ProcessControls(gameTime, _mapLarge);
         }
 
@@ -83,7 +84,7 @@ namespace MileniaGameProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
-            _spriteBatch.Begin(transformMatrix: ScaleMatrix);
+            _spriteBatch.Begin();
             _mapLarge.Draw(gameTime, _spriteBatch);
             _character.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();

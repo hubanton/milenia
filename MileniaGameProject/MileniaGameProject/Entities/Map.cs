@@ -11,7 +11,7 @@ namespace MileniaGameProject.Entities
         public Map(Texture2D mapTexture, Vector2 position)
         {
             MapTexture = mapTexture;
-            Position = position;
+            Position = new Vector2(0, 0);
         }
 
         public void Update(GameTime gameTime)
@@ -21,7 +21,7 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(MapTexture, Position, new Rectangle(100, 100, 1600, 900), Color.White);
+            spriteBatch.Draw(MapTexture, Vector2.Zero, new Rectangle((int) Position.X, (int) Position.Y, Milenia.ScreenWidth, Milenia.ScreenHeight), Color.White);
         }
     }
 }

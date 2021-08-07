@@ -9,10 +9,12 @@ namespace MileniaGameProject.Entities
 
         public Vector2 Position;
         
-        public Character(Texture2D character)
+        public Character(Texture2D character, Vector2 pos)
         {
-            Position = new Vector2(500, 450);
+            Position = pos;
             CharTexture = character;
+            Position.Y -= character.Height * 0.25f / 2;
+            Position.X -= character.Width * 0.25f / 2;
         }
 
         public void Update(GameTime gameTime)
