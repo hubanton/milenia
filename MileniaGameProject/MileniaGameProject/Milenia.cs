@@ -14,9 +14,7 @@ namespace MileniaGameProject
         private SpriteBatch _spriteBatch;
 
         private Character _character;
-        private Map _mapLarge;
-        
-        private InputController _inputController;
+        private MapManager _mapManager;
 
         public static int DefaultWidth = 1600;
         public static int DefaultHeight = 900;
@@ -62,8 +60,8 @@ namespace MileniaGameProject
             _character = new Character(Content.Load<Texture2D>("capybara"), new Vector2(DefaultWidth / 2, DefaultHeight / 2));
             PlayerWidth = (int) (_character.CharTexture.Width);
             PlayerHeight = (int) (_character.CharTexture.Height);
-            _mapLarge = new Map(Content.Load<Texture2D>("border"), _character.Position);
-            _inputController = new InputController(_character, _mapLarge);
+            _mapManager = new MapManager(Content);
+            _mapManager.LoadMap("border", _character);
         }
 
         protected override void Update(GameTime gameTime)
@@ -73,9 +71,9 @@ namespace MileniaGameProject
                 Exit();
             // TODO: Add your update logic here
             base.Update(gameTime);
+            _mapManager.Update(gameTime);
             
-            //Activates Input Listener for KeyboardControls
-            _inputController.ProcessControls(gameTime, _mapLarge);
+            
         }
 
         protected override void Draw(GameTime gameTime)
@@ -83,7 +81,7 @@ namespace MileniaGameProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
             _spriteBatch.Begin(transformMatrix: ScaleMatrix);
-            _mapLarge.Draw(gameTime, _spriteBatch);
+            _mapManager.Draw(gameTime, _spriteBatch);
             _character.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 

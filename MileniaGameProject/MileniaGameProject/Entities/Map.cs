@@ -6,22 +6,25 @@ namespace MileniaGameProject.Entities
     public class Map
     {
         public Texture2D MapTexture;
-        public Vector2 Position;
+        public Vector2 CameraPosition;
+        public Vector2 PlayerPosition;
+        public Character Character;
 
-        public Map(Texture2D mapTexture, Vector2 position)
+        public Map(Texture2D mapTexture, Character character)
         {
             MapTexture = mapTexture;
-            Position = new Vector2(0, 0);
+            CameraPosition = Vector2.Zero;
+            Character = character;
         }
 
         public void Update(GameTime gameTime)
         {
-            throw new System.NotImplementedException();
+            PlayerPosition = CameraPosition + Character.Position;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(MapTexture, Vector2.Zero, new Rectangle((int) Position.X, (int) Position.Y, Milenia.DefaultWidth, Milenia.DefaultHeight), Color.White);
+            spriteBatch.Draw(MapTexture, Vector2.Zero, new Rectangle((int) CameraPosition.X, (int) CameraPosition.Y, Milenia.DefaultWidth, Milenia.DefaultHeight), Color.White);
         }
     }
 }
