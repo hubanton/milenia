@@ -13,7 +13,7 @@ namespace MileniaGameProject.UserInput
         private Map _map;
 
         //Determines speed of player
-        private int _velocity = 8;
+        private int _velocity = 4;
         
         public InputController(Character character, Map map)
         {
@@ -35,18 +35,18 @@ namespace MileniaGameProject.UserInput
                 _previousKeyboardState.IsKeyDown(Keys.Right) || _previousKeyboardState.IsKeyDown(Keys.D);
 
             if (isWalkDownwardsPressed &&
-                map.Position.Y <= ((map.MapTexture.Height - Milenia.ScreenHeight)) && _character.Position.Y >= (Milenia.ScreenHeight - _character.CharTexture.Height) / 2)
+                map.Position.Y <= ((map.MapTexture.Height - Milenia.DefaultHeight)) && _character.Position.Y >= (Milenia.DefaultHeight - _character.CharTexture.Height) / 2)
             {
                 map.Position.Y += _velocity;
             }
             else if (isWalkDownwardsPressed &&
-                     _character.Position.Y <= (Milenia.ScreenHeight - Milenia.PlayerHeight))
+                     _character.Position.Y <= (Milenia.DefaultHeight - Milenia.PlayerHeight))
             {
                 _character.Position.Y += _velocity;
             }
 
             if (isWalkUpwardsPressed && _map.Position.Y >= 0 &&
-                _character.Position.Y <= Milenia.ScreenHeight / 2)
+                _character.Position.Y <= Milenia.DefaultHeight / 2)
             {
                 _map.Position.Y -= _velocity;
             }
@@ -55,7 +55,7 @@ namespace MileniaGameProject.UserInput
                 _character.Position.Y -= _velocity;
             }
 
-            if (isWalkLeftPressed && _map.Position.X >= 0 && _character.Position.X <= (Milenia.ScreenWidth - Milenia.PlayerWidth) / 2)
+            if (isWalkLeftPressed && _map.Position.X >= 0 && _character.Position.X <= (Milenia.DefaultWidth - Milenia.PlayerWidth) / 2)
             {
                 _map.Position.X -= _velocity;
             }
@@ -64,53 +64,15 @@ namespace MileniaGameProject.UserInput
                 _character.Position.X -= _velocity;
             }
 
-            if (isWalkRightPressed && _map.Position.X <= (map.MapTexture.Width - Milenia.ScreenWidth) &&
-                _character.Position.X >= (Milenia.ScreenWidth - Milenia.PlayerWidth) / 2)
+            if (isWalkRightPressed && _map.Position.X <= (map.MapTexture.Width - Milenia.DefaultWidth) &&
+                _character.Position.X >= (Milenia.DefaultWidth - Milenia.PlayerWidth) / 2)
             {
                 _map.Position.X += _velocity;
             }
-            else if (isWalkRightPressed && _character.Position.X <= (Milenia.ScreenWidth - Milenia.PlayerWidth))
+            else if (isWalkRightPressed && _character.Position.X <= (Milenia.DefaultWidth - Milenia.PlayerWidth))
             {
                 _character.Position.X += _velocity;
             }
-
-
-            /*
-            if (isWalkDownwardsPressed && _map.Position.Y >= -map.MapTexture.Height && _character.Position.Y > (Milenia.ScreenHeight - Milenia.PlayerHeight) / 2)
-            {
-                _map.Position.Y -= 5;
-            }
-            else if (isWalkDownwardsPressed && _character.Position.Y <= Milenia.ScreenHeight - Milenia.PlayerHeight / 2)
-            {
-                _character.Position.Y += 5;
-            }
-
-            if (isWalkUpwardsPressed && _map.Position.Y <= 0 && _character.Position.Y < Milenia.ScreenHeight / 2)
-            {
-                _map.Position.Y += 5;
-            }
-            else if (isWalkUpwardsPressed && _character.Position.Y >= 0)
-            {
-                _character.Position.Y -= 5;
-            }
-
-            if (isWalkLeftPressed && _map.Position.X <= 0 && _character.Position.X < Milenia.ScreenWidth / 2)
-            {
-                _map.Position.X += 5;
-            }
-            else if (isWalkLeftPressed && _character.Position.X >= 0)
-            {
-                _character.Position.X -= 5;
-            }
-
-            if (isWalkRightPressed && _map.Position.X >= -map.MapTexture.Width + Milenia.ScreenWidth && _character.Position.X > (Milenia.ScreenWidth - Milenia.PlayerWidth) / 2)
-            {
-                _map.Position.X -= 5;
-            }
-            else if (isWalkRightPressed && _character.Position.X <= Milenia.ScreenWidth - Milenia.PlayerWidth)
-            {
-                _character.Position.X += 5;
-            }*/
 
             _previousKeyboardState = keyboardState;
         }

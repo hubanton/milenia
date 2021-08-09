@@ -8,7 +8,7 @@ namespace MileniaGameProject.Entities
         public Texture2D CharTexture;
 
         public Vector2 Position;
-        
+
         public Character(Texture2D character, Vector2 pos)
         {
             Position = pos;

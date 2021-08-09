@@ -21,7 +21,7 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(MapTexture, Vector2.Zero, new Rectangle((int) Position.X, (int) Position.Y, Milenia.ScreenWidth, Milenia.ScreenHeight), Color.White);
+            spriteBatch.Draw(MapTexture, Vector2.Zero, new Rectangle((int) Position.X, (int) Position.Y, Milenia.DefaultWidth, Milenia.DefaultHeight), Color.White);
         }
     }
 }
