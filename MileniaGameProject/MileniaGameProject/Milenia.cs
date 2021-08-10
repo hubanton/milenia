@@ -15,6 +15,7 @@ namespace MileniaGameProject
 
         private Character _character;
         private MapManager _mapManager;
+        private Obstacle _obstacle;
 
         public static int DefaultWidth = 1600;
         public static int DefaultHeight = 900;
@@ -24,7 +25,7 @@ namespace MileniaGameProject
         public static int PlayerWidth;
         public static int PlayerHeight;
 
-        
+
         public Milenia()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -35,8 +36,8 @@ namespace MileniaGameProject
         protected override void Initialize()
         {
             // Fetches the current resolution of the users screen and sets scale to fit sprites
-            ScaleX = (float)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / DefaultWidth;
-            ScaleY = (float)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / DefaultHeight;
+            ScaleX = (float) GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / DefaultWidth;
+            ScaleY = (float) GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / DefaultHeight;
             ScaleMatrix = Matrix.CreateScale(ScaleX, ScaleY, 1.0f);
             //  sets to preferred resolution
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -45,7 +46,7 @@ namespace MileniaGameProject
             _graphics.IsFullScreen = true;
             // Tabbing outside of Screen no longer collapses Window
             _graphics.HardwareModeSwitch = false;
-            
+
             //Needed in order to apply previously made changes to window
             _graphics.ApplyChanges();
 
@@ -55,13 +56,17 @@ namespace MileniaGameProject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            
-            _character = new Character(Content.Load<Texture2D>("capybara"), new Vector2(DefaultWidth / 2, DefaultHeight / 2));
+
+
+            _character = new Character(Content.Load<Texture2D>("capybara"),
+                new Vector2(DefaultWidth / 2, DefaultHeight / 2));
             PlayerWidth = (int) (_character.CharTexture.Width);
             PlayerHeight = (int) (_character.CharTexture.Height);
             _mapManager = new MapManager(Content);
             _mapManager.LoadMap("border", _character);
+            _obstacle = new Obstacle(_mapManager.Map,
+                new Vector2(_mapManager.Map.MapTexture.Width / 2, _mapManager.Map.MapTexture.Height / 2),
+                Content.Load<Texture2D>("box"));
         }
 
         protected override void Update(GameTime gameTime)
@@ -72,17 +77,17 @@ namespace MileniaGameProject
             // TODO: Add your update logic here
             base.Update(gameTime);
             _mapManager.Update(gameTime);
-            
-            
+            _obstacle.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
+
             _spriteBatch.Begin(transformMatrix: ScaleMatrix);
             _mapManager.Draw(gameTime, _spriteBatch);
             _character.Draw(gameTime, _spriteBatch);
+            _obstacle.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

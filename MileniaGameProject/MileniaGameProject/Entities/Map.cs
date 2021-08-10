@@ -5,6 +5,12 @@ namespace MileniaGameProject.Entities
 {
     public class Map
     {
+        public bool canMoveUp = true;
+        public bool canMoveDown = true;
+        public bool canMoveLeft = true;
+        public bool canMoveRight = true;
+        
+        
         public Texture2D MapTexture;
         public Vector2 CameraPosition;
         public Vector2 PlayerPosition;

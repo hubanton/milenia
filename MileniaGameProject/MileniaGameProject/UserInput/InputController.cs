@@ -14,8 +14,8 @@ namespace MileniaGameProject.UserInput
         private Map _map;
 
         //Determines speed of player
-        private int _velocity = 8;
-        
+        private int _velocity = 12;
+
         public InputController(Character character, Map map)
         {
             _character = character;
@@ -29,13 +29,13 @@ namespace MileniaGameProject.UserInput
             Keys[] keys = keyboardState.GetPressedKeys();
 
 
-            bool isWalkUpwardsPressed = keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W);
+            bool isWalkUpwardsPressed = (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) && map.canMoveUp;
             bool isWalkDownwardsPressed =
-                _previousKeyboardState.IsKeyDown(Keys.Down) || _previousKeyboardState.IsKeyDown(Keys.S);
+                (_previousKeyboardState.IsKeyDown(Keys.Down) || _previousKeyboardState.IsKeyDown(Keys.S)) && map.canMoveDown;
             bool isWalkLeftPressed =
-                _previousKeyboardState.IsKeyDown(Keys.Left) || _previousKeyboardState.IsKeyDown(Keys.A);
+                (_previousKeyboardState.IsKeyDown(Keys.Left) || _previousKeyboardState.IsKeyDown(Keys.A)) && map.canMoveLeft;
             bool isWalkRightPressed =
-                _previousKeyboardState.IsKeyDown(Keys.Right) || _previousKeyboardState.IsKeyDown(Keys.D);
+                (_previousKeyboardState.IsKeyDown(Keys.Right) || _previousKeyboardState.IsKeyDown(Keys.D)) && map.canMoveRight;
 
             bool isDiagonalUpLeft = isWalkUpwardsPressed && isWalkLeftPressed;
             bool isDiagonalUpRight = isWalkUpwardsPressed && isWalkRightPressed;
@@ -48,7 +48,8 @@ namespace MileniaGameProject.UserInput
             }
 
             if (isWalkDownwardsPressed &&
-                map.CameraPosition.Y < ((map.MapTexture.Height - Milenia.DefaultHeight)) && _character.Position.Y >= (Milenia.DefaultHeight - _character.CharTexture.Height) / 2)
+                map.CameraPosition.Y < ((map.MapTexture.Height - Milenia.DefaultHeight)) && _character.Position.Y >=
+                (Milenia.DefaultHeight - _character.CharTexture.Height) / 2)
             {
                 map.CameraPosition.Y += _velocity - punish;
             }
@@ -68,17 +69,18 @@ namespace MileniaGameProject.UserInput
                 _character.Position.Y -= _velocity - punish;
             }
 
-            if (isWalkLeftPressed && _map.CameraPosition.X > 0 && _character.Position.X <= (Milenia.DefaultWidth - Milenia.PlayerWidth) / 2)
+            if (isWalkLeftPressed && _map.CameraPosition.X > 0 &&
+                _character.Position.X <= (Milenia.DefaultWidth - Milenia.PlayerWidth) / 2)
             {
                 _map.CameraPosition.X -= _velocity - punish;
-
             }
             else if (isWalkLeftPressed && _character.Position.X >= 0)
             {
                 _character.Position.X -= _velocity - punish;
             }
 
-            if (isWalkRightPressed && map.MapTexture.Width - Milenia.DefaultWidth > 0 && _map.CameraPosition.X <= (map.MapTexture.Width - Milenia.DefaultWidth) &&
+            if (isWalkRightPressed && map.MapTexture.Width - Milenia.DefaultWidth > 0 &&
+                _map.CameraPosition.X <= (map.MapTexture.Width - Milenia.DefaultWidth) &&
                 _character.Position.X >= (Milenia.DefaultWidth - Milenia.PlayerWidth) / 2)
             {
                 _map.CameraPosition.X += _velocity - punish;
@@ -89,6 +91,11 @@ namespace MileniaGameProject.UserInput
             }
 
             _previousKeyboardState = keyboardState;
+
+            map.canMoveDown = true;
+            map.canMoveUp = true;
+            map.canMoveLeft = true;
+            map.canMoveRight = true;
         }
     }
 }
