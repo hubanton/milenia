@@ -74,7 +74,6 @@ namespace MileniaGameProject
             // TODO: Add your update logic here
             base.Update(gameTime);
             _mapManager.Update(gameTime);
-            _obstacle.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -84,7 +83,6 @@ namespace MileniaGameProject
             _spriteBatch.Begin(transformMatrix: ScaleMatrix);
             _mapManager.Draw(gameTime, _spriteBatch);
             _character.Draw(gameTime, _spriteBatch);
-            _obstacle.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
