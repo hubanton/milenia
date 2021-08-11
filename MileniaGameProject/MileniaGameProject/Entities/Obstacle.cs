@@ -6,9 +6,9 @@ namespace MileniaGameProject.Entities
 {
     public abstract class Obstacle : IGameEntity, ICollidable
     {
-        private Map _map;
-        private Vector2 _mapPosition;
-        private Texture2D _obstacleTexture;
+        protected Map _map;
+        protected Vector2 _mapPosition;
+        protected Texture2D _obstacleTexture;
 
         public Rectangle CollisionBox
         {
@@ -28,16 +28,13 @@ namespace MileniaGameProject.Entities
             _obstacleTexture = obstacleTexture;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             CheckCollisions();
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(_obstacleTexture, new Vector2((int) (_mapPosition.X - _map.CameraPosition.X),
-                (int) (_mapPosition.Y - _map.CameraPosition.Y)), Color.White);
-        }
+        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+        
 
 
         private void CheckCollisions()

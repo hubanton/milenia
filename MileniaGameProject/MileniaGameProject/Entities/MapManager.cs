@@ -11,18 +11,27 @@ namespace MileniaGameProject.Entities
         public Map Map;
         
         private ContentManager _content;
+
+        private ObstacleManager _obstacleManager;
         
         private InputController _inputController;
 
-        public MapManager(ContentManager content)
+        public MapManager(ContentManager content, ObstacleManager obstacleManager)
         {
+            _obstacleManager = obstacleManager;
             _content = content;
+            _obstacleManager = new ObstacleManager(content);
         }
 
         public void LoadMap(String map, Character character)
         {
             Map = new Map(_content.Load<Texture2D>(map), character);
             _inputController = new InputController(character, Map);
+            Random rand = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                _obstacleManager.SpawnObstacle("box", Map, new Vector2( rand.Next(3201), rand.Next(1801)));
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -34,14 +43,17 @@ namespace MileniaGameProject.Entities
             if ((int) Map.PlayerPosition.X > Map.MapTexture.Width - Map.Character.CharTexture.Width - 10)
             {
                 Map.Character.Position = new Vector2(0, Milenia.DefaultHeight / 2);
+                _obstacleManager.ClearList();
                 LoadMap("map2nd", Map.Character);
                 _inputController = new InputController(Map.Character, Map);
             }
+            _obstacleManager.Update(gameTime);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Map.Draw(gameTime, spriteBatch);
+            _obstacleManager.Draw(gameTime, spriteBatch);
         }
     }
 }

@@ -15,11 +15,13 @@ namespace MileniaGameProject.Entities
         public ObstacleManager(ContentManager content)
         {
             _content = content;
+            Obstacles = new List<Obstacle>();
+            
         }
 
-        public void SpawnObstacle(String obstacle)
+        public void SpawnObstacle(String obstacle, Map map, Vector2 mapPosition)
         {
-            //loads Obstacle per string obstacle
+            Obstacles.Add(new Box(map, mapPosition, _content.Load<Texture2D>(obstacle)));
         }
 
         public void RemoveObstacle(Obstacle obstacle)
@@ -29,12 +31,23 @@ namespace MileniaGameProject.Entities
         
         public void Update(GameTime gameTime)
         {
-            throw new System.NotImplementedException();
+            foreach (var obstacle in Obstacles)
+            {
+                obstacle.Update(gameTime);
+            }
         }
 
+        public void ClearList()
+        {
+            Obstacles.Clear();
+        }
+        
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new System.NotImplementedException();
+            foreach (var obstacle in Obstacles)
+            {
+                obstacle.Draw(gameTime, spriteBatch);
+            }
         }
     }
 }

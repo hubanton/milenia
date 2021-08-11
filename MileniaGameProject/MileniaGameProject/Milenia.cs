@@ -15,7 +15,7 @@ namespace MileniaGameProject
 
         private Character _character;
         private MapManager _mapManager;
-        private Obstacle _obstacle;
+        private ObstacleManager _obstacleManager;
 
         public static int DefaultWidth = 1600;
         public static int DefaultHeight = 900;
@@ -62,7 +62,7 @@ namespace MileniaGameProject
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
             PlayerWidth =_character.CharTexture.Width;
             PlayerHeight = _character.CharTexture.Height;
-            _mapManager = new MapManager(Content);
+            _mapManager = new MapManager(Content, _obstacleManager);
             _mapManager.LoadMap("border", _character);
         }
 
