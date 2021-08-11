@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
-    public class Obstacle : IGameEntity, ICollidable
+    public abstract class Obstacle : IGameEntity, ICollidable
     {
         private Map _map;
         private Vector2 _mapPosition;
@@ -31,7 +31,6 @@ namespace MileniaGameProject.Entities
         public void Update(GameTime gameTime)
         {
             CheckCollisions();
-            
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
