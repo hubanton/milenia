@@ -60,13 +60,10 @@ namespace MileniaGameProject
 
             _character = new Character(Content.Load<Texture2D>("capybara"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
-            PlayerWidth = (int) (_character.CharTexture.Width);
-            PlayerHeight = (int) (_character.CharTexture.Height);
+            PlayerWidth =_character.CharTexture.Width;
+            PlayerHeight = _character.CharTexture.Height;
             _mapManager = new MapManager(Content);
             _mapManager.LoadMap("border", _character);
-            _obstacle = new Obstacle(_mapManager.Map,
-                new Vector2(_mapManager.Map.MapTexture.Width / 2, _mapManager.Map.MapTexture.Height / 2),
-                Content.Load<Texture2D>("box"));
         }
 
         protected override void Update(GameTime gameTime)

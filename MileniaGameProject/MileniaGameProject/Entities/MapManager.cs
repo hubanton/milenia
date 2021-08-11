@@ -9,6 +9,7 @@ namespace MileniaGameProject.Entities
     public class MapManager : IGameEntity
     {
         public Map Map;
+        
         private ContentManager _content;
         
         private InputController _inputController;
@@ -18,7 +19,7 @@ namespace MileniaGameProject.Entities
             _content = content;
         }
 
-        public void LoadMap(string map, Character character)
+        public void LoadMap(String map, Character character)
         {
             Map = new Map(_content.Load<Texture2D>(map), character);
             _inputController = new InputController(character, Map);
