@@ -10,7 +10,7 @@ namespace MileniaGameProject.Entities
         protected Vector2 _mapPosition;
         protected Texture2D _obstacleTexture;
 
-        public Rectangle CollisionBox
+        public virtual Rectangle CollisionBox
         {
             get
             {

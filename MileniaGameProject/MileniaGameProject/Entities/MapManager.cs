@@ -28,10 +28,7 @@ namespace MileniaGameProject.Entities
             Map = new Map(_content.Load<Texture2D>(map), character);
             _inputController = new InputController(character, Map);
             Random rand = new Random();
-            for (int i = 0; i < 100; i++)
-            {
-                _obstacleManager.SpawnObstacle("box", Map, new Vector2( rand.Next(3201), rand.Next(1801)));
-            }
+            _obstacleManager.SpawnObstacle("house", Map, new Vector2(800, 450), "Building", new Rectangle(0, 280, 572, 374));
         }
 
         public void Update(GameTime gameTime)
