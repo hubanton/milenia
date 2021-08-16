@@ -21,7 +21,7 @@ namespace MileniaGameProject.Entities
             
         }
 
-        public void SpawnObstacle(String obstacle, Map map, Vector2 mapPosition, String type, Rectangle? bounds)
+        public void SpawnObstacle(String obstacle, Map map, Vector2 mapPosition, String type, List<Rectangle> bounds)
         {
             if (type.Equals("Box"))
             {

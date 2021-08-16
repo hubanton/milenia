@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,22 +9,27 @@ namespace MileniaGameProject.Entities
     {
         public int DrawOrder => 1;
         
-        protected Rectangle _bounds;
+        protected List<Rectangle> _bounds;
         
-        public override Rectangle CollisionBox
+        public override List<Rectangle> CollisionBox
         {
             get
             {
-                Rectangle box = new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + _bounds.X),
-                    (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + _bounds.Y), _bounds.Width,
-                    _bounds.Height);
+                List<Rectangle> box = new List<Rectangle>();
+                foreach (var bound in _bounds)
+                {
+                    box.Add(new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + bound.X),
+                        (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + bound.Y), bound.Width,
+                        bound.Height));
+                }
+
                 return box;
             }
         }
 
-        public Building(Map map, Vector2 mapPosition, Texture2D obstacleTexture, Rectangle? bounds) : base(map, mapPosition, obstacleTexture)
+        public Building(Map map, Vector2 mapPosition, Texture2D obstacleTexture, List<Rectangle> bounds) : base(map, mapPosition, obstacleTexture)
         {
-            if (bounds != null) _bounds = (Rectangle) bounds;
+            if (bounds != null) _bounds = bounds;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -34,33 +40,36 @@ namespace MileniaGameProject.Entities
 
         private void CheckCollisions()
         {
-            Rectangle obstacleCollisionBox = CollisionBox;
+            List<Rectangle> obstacleCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = _map.Character.CollisionBox;
 
-            if (obstacleCollisionBox.Intersects(characterCollisionBox))
+            foreach (var collisionBox in obstacleCollisionBox)
             {
-                Rectangle tempRect = Rectangle.Intersect(obstacleCollisionBox, characterCollisionBox);
+                if (collisionBox.Intersects(characterCollisionBox))
+                {
+                    Rectangle tempRect = Rectangle.Intersect(collisionBox, characterCollisionBox);
 
-                if (tempRect.Width <= tempRect.Height)
-                {
-                    if (tempRect.X > _map.Character.Position.X)
+                    if (tempRect.Width <= tempRect.Height)
                     {
-                        _map.canMoveRight = false;
+                        if (tempRect.X > _map.Character.Position.X)
+                        {
+                            _map.canMoveRight = false;
+                        }
+                        else
+                        {
+                            _map.canMoveLeft = false;
+                        }
                     }
                     else
                     {
-                        _map.canMoveLeft = false;
-                    }
-                }
-                else
-                {
-                    if (tempRect.Y > _map.Character.Position.Y)
-                    {
-                        _map.canMoveDown = false;
-                    }
-                    else
-                    {
-                        _map.canMoveUp = false;
+                        if (tempRect.Y > _map.Character.Position.Y)
+                        {
+                            _map.canMoveDown = false;
+                        }
+                        else
+                        {
+                            _map.canMoveUp = false;
+                        }
                     }
                 }
             }

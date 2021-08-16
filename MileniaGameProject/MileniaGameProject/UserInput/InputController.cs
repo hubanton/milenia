@@ -16,6 +16,8 @@ namespace MileniaGameProject.UserInput
         //Determines speed of player
         private int _velocity = 12;
 
+        private double squareOfTwo = Math.Sqrt(2) / 2;
+
         public InputController(Character character, Map map)
         {
             _character = character;
@@ -44,7 +46,7 @@ namespace MileniaGameProject.UserInput
 
             if (isDiagonalUpLeft || isDiagonalUpRight || isDiagonalDownLeft || isDiagonalDownRight)
             {
-                punish = (int) (_velocity - _velocity * (Math.Sqrt(2) / 2));
+                punish = (int) (_velocity - _velocity * squareOfTwo);
             }
 
             if (isWalkDownwardsPressed &&

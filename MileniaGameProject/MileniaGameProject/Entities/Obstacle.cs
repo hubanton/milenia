@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
-    public abstract class Obstacle : IGameEntity, ICollidable
+    public abstract class Obstacle : IGameEntity, ICollidables
     {
         public int DrawOrder => 4;
         
@@ -12,13 +13,14 @@ namespace MileniaGameProject.Entities
         protected Vector2 _mapPosition;
         protected Texture2D _obstacleTexture;
 
-        public virtual Rectangle CollisionBox
+        public virtual List<Rectangle> CollisionBox
         {
             get
             {
-                Rectangle box = new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X),
+                List<Rectangle> box = new List<Rectangle>();
+                box.Add(new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X),
                     (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y), _obstacleTexture.Width,
-                    _obstacleTexture.Height);
+                    _obstacleTexture.Height));
                 return box;
             }
         }
@@ -41,36 +43,40 @@ namespace MileniaGameProject.Entities
 
         private void CheckCollisions()
         {
-            Rectangle obstacleCollisionBox = CollisionBox;
+            List<Rectangle> obstacleCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = _map.Character.CollisionBox;
 
-            if (obstacleCollisionBox.Intersects(characterCollisionBox))
+            foreach (var collisionBox in CollisionBox)
             {
-                Rectangle tempRect = Rectangle.Intersect(obstacleCollisionBox, characterCollisionBox);
+                if (collisionBox.Intersects(characterCollisionBox))
+                {
+                    Rectangle tempRect = Rectangle.Intersect(collisionBox, characterCollisionBox);
 
-                if (tempRect.Width <= tempRect.Height)
-                {
-                    if (tempRect.X > _map.Character.Position.X)
+                    if (tempRect.Width <= tempRect.Height)
                     {
-                        _map.canMoveRight = false;
+                        if (tempRect.X > _map.Character.Position.X)
+                        {
+                            _map.canMoveRight = false;
+                        }
+                        else
+                        {
+                            _map.canMoveLeft = false;
+                        }
                     }
                     else
                     {
-                        _map.canMoveLeft = false;
-                    }
-                }
-                else
-                {
-                    if (tempRect.Y > _map.Character.Position.Y)
-                    {
-                        _map.canMoveDown = false;
-                    }
-                    else
-                    {
-                        _map.canMoveUp = false;
+                        if (tempRect.Y > _map.Character.Position.Y)
+                        {
+                            _map.canMoveDown = false;
+                        }
+                        else
+                        {
+                            _map.canMoveUp = false;
+                        }
                     }
                 }
             }
+            
         }
     }
 }

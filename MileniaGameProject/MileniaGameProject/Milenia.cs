@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -68,8 +69,11 @@ namespace MileniaGameProject
             _mapManager = new MapManager(Content);
             _mapManager.LoadMap("border", _character);
 
+            List<Rectangle> bounds = new List<Rectangle>();
+            bounds.Add(new Rectangle(0, 280, 512, 374));
+            bounds.Add(new Rectangle(452, 654, 59, 60));
             _obstacleManager = new ObstacleManager(Content);
-            _obstacleManager.SpawnObstacle("house", _mapManager.Map, new Vector2(800, 450), "Building", new Rectangle(0, 280, 572, 374));
+            _obstacleManager.SpawnObstacle("house", _mapManager.Map, new Vector2(800, 450), "Building", bounds);
 
             _entityManager = new EntityManager();
             _entityManager.AddEntity(_character);
