@@ -6,6 +6,8 @@ namespace MileniaGameProject.Entities
 {
     public class Building : Obstacle
     {
+        public int DrawOrder => 1;
+        
         protected Rectangle _bounds;
         
         public override Rectangle CollisionBox

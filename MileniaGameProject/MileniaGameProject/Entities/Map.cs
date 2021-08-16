@@ -5,6 +5,8 @@ namespace MileniaGameProject.Entities
 {
     public class Map
     {
+        public int DrawOrder => 0;
+        
         public bool canMoveUp = true;
         public bool canMoveDown = true;
         public bool canMoveLeft = true;

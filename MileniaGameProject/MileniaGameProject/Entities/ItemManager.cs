@@ -8,6 +8,8 @@ namespace MileniaGameProject.Entities
 {
     public class ItemManager : IGameEntity
     {
+        public int DrawOrder => 6;
+        
         public List<Item> Items;
 
         private ContentManager _content;

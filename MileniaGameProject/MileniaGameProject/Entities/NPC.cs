@@ -5,6 +5,8 @@ namespace MileniaGameProject.Entities
 {
     public class NPC : IGameEntity
     {
+        public int DrawOrder => 5;
+        
         public void Update(GameTime gameTime)
         {
             throw new System.NotImplementedException();

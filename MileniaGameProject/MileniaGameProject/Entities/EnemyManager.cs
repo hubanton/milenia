@@ -8,6 +8,8 @@ namespace MileniaGameProject.Entities
 {
     public class EnemyManager : IGameEntity
     {
+        public int DrawOrder => 5;
+        
         public List<Enemy> Enemies;
 
         private ContentManager _content;

@@ -5,6 +5,8 @@ namespace MileniaGameProject.Entities
 {
     public class Character : IGameEntity, ICollidable
     {
+        public int DrawOrder => 3;
+        
         public Texture2D CharTexture;
 
         public Vector2 Position;

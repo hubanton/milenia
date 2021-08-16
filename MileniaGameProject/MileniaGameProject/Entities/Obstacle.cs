@@ -6,6 +6,8 @@ namespace MileniaGameProject.Entities
 {
     public abstract class Obstacle : IGameEntity, ICollidable
     {
+        public int DrawOrder => 4;
+        
         protected Map _map;
         protected Vector2 _mapPosition;
         protected Texture2D _obstacleTexture;

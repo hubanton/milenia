@@ -6,8 +6,9 @@ namespace MileniaGameProject.Entities
 {
     public class NPCManager : IGameEntity
     {
-        public List<NPC> NPCs;
+        public int DrawOrder => 5;
         
+        public List<NPC> NPCs;
         
         public void Update(GameTime gameTime)
         {

@@ -13,6 +13,8 @@ namespace MileniaGameProject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private EntityManager _entityManager;
+        
         private Character _character;
         private MapManager _mapManager;
         private ObstacleManager _obstacleManager;
@@ -62,8 +64,17 @@ namespace MileniaGameProject
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
             PlayerWidth =_character.CharTexture.Width;
             PlayerHeight = _character.CharTexture.Height;
-            _mapManager = new MapManager(Content, _obstacleManager);
+            
+            _mapManager = new MapManager(Content);
             _mapManager.LoadMap("border", _character);
+
+            _obstacleManager = new ObstacleManager(Content);
+            _obstacleManager.SpawnObstacle("house", _mapManager.Map, new Vector2(800, 450), "Building", new Rectangle(0, 280, 572, 374));
+
+            _entityManager = new EntityManager();
+            _entityManager.AddEntity(_character);
+            _entityManager.AddEntity(_mapManager);
+            _entityManager.AddEntity(_obstacleManager);
         }
 
         protected override void Update(GameTime gameTime)
@@ -71,9 +82,10 @@ namespace MileniaGameProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            // TODO: Add your update logic here
+            
+            _entityManager.Update(gameTime);
+            
             base.Update(gameTime);
-            _mapManager.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -81,8 +93,7 @@ namespace MileniaGameProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(transformMatrix: ScaleMatrix);
-            _mapManager.Draw(gameTime, _spriteBatch);
-            _character.Draw(gameTime, _spriteBatch);
+            _entityManager.Draw(_spriteBatch, gameTime);
             _spriteBatch.End();
 
             base.Draw(gameTime);

@@ -5,7 +5,7 @@ namespace MileniaGameProject.Entities
 {
     public class Item : IGameEntity
     {
-        
+        public int DrawOrder => 6;
         
         
         public void Update(GameTime gameTime)
