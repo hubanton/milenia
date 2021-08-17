@@ -38,10 +38,9 @@ namespace MileniaGameProject.Entities
         }
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
-        
 
 
-        private void CheckCollisions()
+        protected virtual void CheckCollisions()
         {
             List<Rectangle> obstacleCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = _map.Character.CollisionBox;

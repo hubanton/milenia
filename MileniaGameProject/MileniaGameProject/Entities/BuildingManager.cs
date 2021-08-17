@@ -10,7 +10,7 @@ namespace MileniaGameProject.Entities
     {
         public int DrawOrder => 1;
         
-        public List<Building> Buildings;
+        public List<Building> Buildings = new List<Building>();
 
         private ContentManager _content;
 
@@ -19,11 +19,16 @@ namespace MileniaGameProject.Entities
             _content = content;
         }
 
-        public void SpawnBuilding(String building)
+        public void SpawnBuilding(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds, Rectangle entryPoint)
         {
-            //loads Building per string building
+            Buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
         }
 
+
+        public void ClearList()
+        {
+            Buildings = new List<Building>();
+        }
         public void RemoveBuilding(Building building)
         {
             //removes Building from List of Building and maybe more?
@@ -31,12 +36,18 @@ namespace MileniaGameProject.Entities
 
         public void Update(GameTime gameTime)
         {
-            throw new System.NotImplementedException();
+            foreach (var building in Buildings)
+            {
+                building.Update(gameTime);
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new System.NotImplementedException();
+            foreach (var building in Buildings)
+            {
+                building.Draw(gameTime, spriteBatch);
+            }
         }
     }
 }

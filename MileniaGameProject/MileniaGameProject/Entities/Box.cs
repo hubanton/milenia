@@ -10,7 +10,7 @@ namespace MileniaGameProject.Entities
         {
         }
         
-        public Rectangle CollisionBox
+        public new Rectangle CollisionBox
         {
             get
             {

@@ -21,15 +21,9 @@ namespace MileniaGameProject.Entities
             
         }
 
-        public void SpawnObstacle(String obstacle, Map map, Vector2 mapPosition, String type, List<Rectangle> bounds)
+        public void SpawnObstacle(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds)
         {
-            if (type.Equals("Box"))
-            {
-                Obstacles.Add(new Box(map, mapPosition, _content.Load<Texture2D>(obstacle)));
-            } else if (type.Equals("Building"))
-            {
-                Obstacles.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds));
-            }
+            Obstacles.Add(new Box(map, mapPosition, _content.Load<Texture2D>(obstacle)));
         }
 
         public void RemoveObstacle(Obstacle obstacle)

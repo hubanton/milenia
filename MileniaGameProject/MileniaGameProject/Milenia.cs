@@ -17,8 +17,9 @@ namespace MileniaGameProject
         private EntityManager _entityManager;
         
         private Character _character;
-        private MapManager _mapManager;
-        private ObstacleManager _obstacleManager;
+        public static MapManager MapManager;
+        public static ObstacleManager ObstacleManager;
+        public static BuildingManager BuildingManager;
 
         public static int DefaultWidth = 1600;
         public static int DefaultHeight = 900;
@@ -66,19 +67,22 @@ namespace MileniaGameProject
             PlayerWidth =_character.CharTexture.Width;
             PlayerHeight = _character.CharTexture.Height;
             
-            _mapManager = new MapManager(Content);
-            _mapManager.LoadMap("border", _character);
+            MapManager = new MapManager(Content);
+            MapManager.LoadMap("border", _character);
 
             List<Rectangle> bounds = new List<Rectangle>();
             bounds.Add(new Rectangle(0, 280, 512, 374));
             bounds.Add(new Rectangle(452, 654, 59, 60));
-            _obstacleManager = new ObstacleManager(Content);
-            _obstacleManager.SpawnObstacle("house", _mapManager.Map, new Vector2(800, 450), "Building", bounds);
+            ObstacleManager = new ObstacleManager(Content);
 
+            BuildingManager = new BuildingManager(Content);
+            BuildingManager.SpawnBuilding("house", MapManager.Map, new Vector2(800, 450), bounds, new Rectangle(184, 516, 83, 140));
+            
             _entityManager = new EntityManager();
+            _entityManager.AddEntity(BuildingManager);
             _entityManager.AddEntity(_character);
-            _entityManager.AddEntity(_mapManager);
-            _entityManager.AddEntity(_obstacleManager);
+            _entityManager.AddEntity(MapManager);
+            _entityManager.AddEntity(ObstacleManager);
         }
 
         protected override void Update(GameTime gameTime)
