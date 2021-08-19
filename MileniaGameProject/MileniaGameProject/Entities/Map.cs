@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
@@ -15,14 +16,18 @@ namespace MileniaGameProject.Entities
         
         public Texture2D MapTexture;
         public Vector2 CameraPosition;
-        public Vector2 PlayerPosition;
+        
         public Character Character;
+        public Vector2 PlayerPosition;
 
-        public Map(Texture2D mapTexture, Character character)
+        public List<Rectangle> EntryPoints;
+
+        public Map(Texture2D mapTexture, Character character, List<Rectangle> entryPoints)
         {
             MapTexture = mapTexture;
             CameraPosition = Vector2.Zero;
             Character = character;
+            EntryPoints = entryPoints;
         }
 
         public void Update(GameTime gameTime)

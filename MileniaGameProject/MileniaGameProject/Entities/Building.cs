@@ -56,9 +56,10 @@ namespace MileniaGameProject.Entities
             
             if (characterCollisionBox.Intersects(doorCollisionBox))
             {
-                Milenia.ObstacleManager.ClearList();
-                Milenia.BuildingManager.ClearList();
-                Milenia.MapManager.LoadMap("interior", _map.Character);
+                // replace with generic LoadInterior type method
+                // Milenia.ObstacleManager.ClearList();
+                // Milenia.BuildingManager.ClearList();
+                // Milenia.MapManager.LoadMap("interior", _map.Character, null);
             }
             else
             {

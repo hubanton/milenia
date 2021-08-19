@@ -68,21 +68,11 @@ namespace MileniaGameProject
             PlayerHeight = _character.CharTexture.Height;
             
             MapManager = new MapManager(Content);
-            MapManager.LoadMap("border", _character);
+            MapManager.LoadMap("PlayerBaseProto", _character, null);
 
-            List<Rectangle> bounds = new List<Rectangle>();
-            bounds.Add(new Rectangle(0, 280, 512, 374));
-            bounds.Add(new Rectangle(452, 654, 59, 60));
-            ObstacleManager = new ObstacleManager(Content);
-
-            BuildingManager = new BuildingManager(Content);
-            BuildingManager.SpawnBuilding("house", MapManager.Map, new Vector2(800, 450), bounds, new Rectangle(184, 516, 83, 140));
-            
             _entityManager = new EntityManager();
-            _entityManager.AddEntity(BuildingManager);
             _entityManager.AddEntity(_character);
             _entityManager.AddEntity(MapManager);
-            _entityManager.AddEntity(ObstacleManager);
         }
 
         protected override void Update(GameTime gameTime)
