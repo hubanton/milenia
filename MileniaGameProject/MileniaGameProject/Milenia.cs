@@ -62,13 +62,16 @@ namespace MileniaGameProject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-            _character = new Character(Content.Load<Texture2D>("capybara"),
+            _character = new Character(Content.Load<Texture2D>("cover1"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
             PlayerWidth =_character.CharTexture.Width;
             PlayerHeight = _character.CharTexture.Height;
             
             MapManager = new MapManager(Content);
-            MapManager.LoadMap("PlayerBaseProto", _character, null);
+            List<(Rectangle, String)> entryPoints = new List<(Rectangle, string)>();
+            entryPoints.Add((new Rectangle(0, 400, 3, 100), "MapProto"));
+            entryPoints.Add((new Rectangle(1597, 400, 3, 100), "TowerMap"));
+            MapManager.LoadMap("PlayerBaseProto", _character, entryPoints, Vector2.Zero);
 
             _entityManager = new EntityManager();
             _entityManager.AddEntity(_character);

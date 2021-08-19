@@ -22,9 +22,9 @@ namespace MileniaGameProject.Entities
             _content = content;
         }
 
-        public void LoadMap(String map, Character character, List<Rectangle> entryPoints)
+        public void LoadMap(String map, Character character, List<(Rectangle, String)> entryPoints, Vector2 cameraPosition)
         {
-            Map = new Map(_content.Load<Texture2D>(map), character, entryPoints);
+            Map = new Map(_content.Load<Texture2D>(map), character, entryPoints, cameraPosition);
             _inputController = new InputController(character, Map);
         }
 
