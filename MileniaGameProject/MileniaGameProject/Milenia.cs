@@ -62,7 +62,7 @@ namespace MileniaGameProject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-            _character = new Character(Content.Load<Texture2D>("cover1"),
+            _character = new Character(Content.Load<Texture2D>("char"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
             PlayerWidth =_character.CharTexture.Width;
             PlayerHeight = _character.CharTexture.Height;
