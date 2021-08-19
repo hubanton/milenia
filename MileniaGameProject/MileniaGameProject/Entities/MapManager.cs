@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,9 +22,9 @@ namespace MileniaGameProject.Entities
             _content = content;
         }
 
-        public void LoadMap(String map, Character character)
+        public void LoadMap(String map, Character character, List<(Rectangle, String)> entryPoints, Vector2 cameraPosition)
         {
-            Map = new Map(_content.Load<Texture2D>(map), character);
+            Map = new Map(_content.Load<Texture2D>(map), character, entryPoints, cameraPosition);
             _inputController = new InputController(character, Map);
         }
 
@@ -33,12 +34,6 @@ namespace MileniaGameProject.Entities
             _inputController.ProcessControls(gameTime, Map);
             
             Map.Update(gameTime);
-            if ((int) Map.PlayerPosition.X > Map.MapTexture.Width - Map.Character.CharTexture.Width - 10)
-            {
-                Map.Character.Position = new Vector2(0, Milenia.DefaultHeight / 2);
-                LoadMap("map2nd", Map.Character);
-                _inputController = new InputController(Map.Character, Map);
-            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

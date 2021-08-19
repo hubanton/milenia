@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
@@ -15,24 +17,52 @@ namespace MileniaGameProject.Entities
         
         public Texture2D MapTexture;
         public Vector2 CameraPosition;
-        public Vector2 PlayerPosition;
+        
         public Character Character;
+        public Vector2 PlayerPosition;
 
-        public Map(Texture2D mapTexture, Character character)
+        public List<(Rectangle, String)> EntryPoints;
+
+        public Map(Texture2D mapTexture, Character character, List<(Rectangle, String)> entryPoints, Vector2 cameraPosition)
         {
             MapTexture = mapTexture;
-            CameraPosition = Vector2.Zero;
+            CameraPosition = cameraPosition;
             Character = character;
+            EntryPoints = entryPoints;
         }
 
         public void Update(GameTime gameTime)
         {
             PlayerPosition = CameraPosition + Character.Position;
+            CheckEntryPoints();
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(MapTexture, Vector2.Zero, new Rectangle((int) CameraPosition.X, (int) CameraPosition.Y, Milenia.DefaultWidth, Milenia.DefaultHeight), Color.White);
+        }
+
+        private void CheckEntryPoints()
+        {
+            if (EntryPoints != null)
+            {
+                foreach (var entryPoint in EntryPoints)
+                {
+                    if (new Rectangle((int) PlayerPosition.X, (int) PlayerPosition.Y, Milenia.PlayerWidth,
+                        Milenia.PlayerHeight).Intersects(entryPoint.Item1))
+                    {
+                        if (entryPoint.Item2.Equals("TowerMap"))
+                        {
+                            Character.Position = new Vector2(0, (Milenia.DefaultHeight - Milenia.PlayerHeight) / 2);
+                            Milenia.MapManager.LoadMap(entryPoint.Item2, Character, null, new Vector2(0, 450));
+                        } else {
+                            Character.Position = new Vector2(Milenia.DefaultWidth - Milenia.PlayerWidth, (Milenia.DefaultHeight - Milenia.PlayerHeight) / 2);
+                            Milenia.MapManager.LoadMap(entryPoint.Item2, Character, null, new Vector2(2000, 450));
+                        }
+                       
+                    }
+                }
+            }
         }
     }
 }
