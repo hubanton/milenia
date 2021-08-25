@@ -69,8 +69,8 @@ namespace MileniaGameProject
             
             MapManager = new MapManager(Content);
             List<(Rectangle, String)> entryPoints = new List<(Rectangle, string)>();
-            entryPoints.Add((new Rectangle(0, 400, 3, 100), "MapProto"));
-            entryPoints.Add((new Rectangle(1597, 400, 3, 100), "TowerMap"));
+            entryPoints.Add((new Rectangle(0, 400, 1, 100), "MapProto"));
+            entryPoints.Add((new Rectangle(1599, 400, 1, 100), "TowerMap"));
             MapManager.LoadMap("PlayerBaseProto", _character, entryPoints, Vector2.Zero);
 
             _entityManager = new EntityManager();
