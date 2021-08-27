@@ -14,7 +14,7 @@ namespace MileniaGameProject.UserInput
         private Map _map;
 
         //Determines speed of player
-        private int _velocity = 12;
+        private int _velocity = 10;
 
         private double squareOfTwo = Math.Sqrt(2) / 2;
 
