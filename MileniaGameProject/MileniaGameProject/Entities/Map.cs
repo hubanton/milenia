@@ -44,19 +44,23 @@ namespace MileniaGameProject.Entities
 
         private void CheckEntryPoints()
         {
+            Rectangle sprite = Character.CollisionBox;
+            int width = sprite.Width;
+            int height = sprite.Height;
+            
             if (EntryPoints != null)
             {
                 foreach (var entryPoint in EntryPoints)
                 {
-                    if (new Rectangle((int) PlayerPosition.X, (int) PlayerPosition.Y, Milenia.PlayerWidth,
-                        Milenia.PlayerHeight).Intersects(entryPoint.Item1))
+                    if (new Rectangle((int) PlayerPosition.X, (int) PlayerPosition.Y, width,
+                        height).Intersects(entryPoint.Item1))
                     {
                         if (entryPoint.Item2.Equals("TowerMap"))
                         {
-                            Character.Position = new Vector2(0, (Milenia.DefaultHeight - Milenia.PlayerHeight) / 2);
+                            Character.Position = new Vector2(0, (Milenia.DefaultHeight - height) / 2);
                             Milenia.MapManager.LoadMap(entryPoint.Item2, Character, null, new Vector2(0, 450));
                         } else {
-                            Character.Position = new Vector2(Milenia.DefaultWidth - Milenia.PlayerWidth, (Milenia.DefaultHeight - Milenia.PlayerHeight) / 2);
+                            Character.Position = new Vector2(Milenia.DefaultWidth - width, (Milenia.DefaultHeight - height) / 2);
                             Milenia.MapManager.LoadMap(entryPoint.Item2, Character, null, new Vector2(2000, 450));
                         }
                        

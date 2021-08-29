@@ -44,19 +44,39 @@ namespace MileniaGameProject.UserInput
             bool isDiagonalDownLeft = isWalkDownwardsPressed && isWalkLeftPressed;
             bool isDiagonalDownRight = isWalkDownwardsPressed && isWalkRightPressed;
 
+            if (isWalkLeftPressed)
+            {
+                _character.State = CharacterState.WalkLeft;
+            } else if (isWalkRightPressed)
+            {
+                _character.State = CharacterState.WalkRight;
+            } else if (isWalkUpwardsPressed)
+            {
+                _character.State = CharacterState.WalkUp;
+            } else if (isWalkDownwardsPressed)
+            {
+                _character.State = CharacterState.WalkDown;
+            } 
+            else
+            {
+                _character.State = CharacterState.Idle;
+            }
+
             if (isDiagonalUpLeft || isDiagonalUpRight || isDiagonalDownLeft || isDiagonalDownRight)
             {
                 punish = (int) (_velocity - _velocity * squareOfTwo);
             }
 
+            Rectangle Collision = _character.CollisionBox;
+
             if (isWalkDownwardsPressed &&
                 map.CameraPosition.Y < ((map.MapTexture.Height - Milenia.DefaultHeight)) && _character.Position.Y >=
-                (Milenia.DefaultHeight - _character.CharTexture.Height) / 2)
+                (Milenia.DefaultHeight - Collision.Height) / 2) // need to subtract character height
             {
                 map.CameraPosition.Y += _velocity - punish;
             }
             else if (isWalkDownwardsPressed &&
-                     _character.Position.Y <= (Milenia.DefaultHeight - Milenia.PlayerHeight))
+                     _character.Position.Y <= (Milenia.DefaultHeight - Collision.Height))
             {
                 _character.Position.Y += _velocity - punish;
             }
@@ -72,7 +92,7 @@ namespace MileniaGameProject.UserInput
             }
 
             if (isWalkLeftPressed && _map.CameraPosition.X > 0 &&
-                _character.Position.X <= (Milenia.DefaultWidth - Milenia.PlayerWidth) / 2)
+                _character.Position.X <= (Milenia.DefaultWidth - Collision.Width) / 2)
             {
                 _map.CameraPosition.X -= _velocity - punish;
             }
@@ -83,11 +103,11 @@ namespace MileniaGameProject.UserInput
 
             if (isWalkRightPressed && map.MapTexture.Width - Milenia.DefaultWidth > 0 &&
                 _map.CameraPosition.X <= (map.MapTexture.Width - Milenia.DefaultWidth) &&
-                _character.Position.X >= (Milenia.DefaultWidth - Milenia.PlayerWidth) / 2)
+                _character.Position.X >= (Milenia.DefaultWidth - Collision.Width) / 2)
             {
                 _map.CameraPosition.X += _velocity - punish;
             }
-            else if (isWalkRightPressed && _character.Position.X <= (Milenia.DefaultWidth - Milenia.PlayerWidth))
+            else if (isWalkRightPressed && _character.Position.X <= (Milenia.DefaultWidth - Collision.Width))
             {
                 _character.Position.X += _velocity - punish;
             }

@@ -64,9 +64,7 @@ namespace MileniaGameProject
 
             _character = new Character(Content.Load<Texture2D>("char"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
-            PlayerWidth =_character.CharTexture.Width;
-            PlayerHeight = _character.CharTexture.Height;
-            
+
             MapManager = new MapManager(Content);
             List<(Rectangle, String)> entryPoints = new List<(Rectangle, string)>();
             entryPoints.Add((new Rectangle(0, 680, 1, 100), "MapProto"));
