@@ -61,10 +61,10 @@ namespace MileniaGameProject.Entities
                         if (entryPoint.Item2.Equals("TowerMap"))
                         {
                             List<(Rectangle, string)> entries = new List<(Rectangle, string)>();
-                            entries.Add((new Rectangle(0, 5600, 1, 100), "PlayerBaseProto"));
+                            entries.Add((new Rectangle(0, 5700, 1, 100), "PlayerBaseProto"));
                             Character.Position = new Vector2(0, (Milenia.DefaultHeight - height) / 2);
                             Character.Position.X += 10;
-                            Milenia.MapManager.LoadMap(entryPoint.Item2, Character, entries, new Vector2(0, 5200));
+                            Milenia.MapManager.LoadMap(entryPoint.Item2, Character, entries, new Vector2(0, 5300));
                         }
                         else if (entryPoint.Item2.Equals("MapProto"))
                         {
