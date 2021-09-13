@@ -61,7 +61,8 @@ namespace MileniaGameProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
+            BuildingManager = new BuildingManager(Content);
+            
             _character = new Character(Content.Load<Texture2D>("char"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
 
@@ -74,6 +75,7 @@ namespace MileniaGameProject
             _entityManager = new EntityManager();
             _entityManager.AddEntity(_character);
             _entityManager.AddEntity(MapManager);
+            _entityManager.AddEntity(BuildingManager);
         }
 
         protected override void Update(GameTime gameTime)

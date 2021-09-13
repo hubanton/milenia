@@ -8,7 +8,7 @@ namespace MileniaGameProject.Entities
 {
     public class BuildingManager : IGameEntity
     {
-        public int DrawOrder => 1;
+        public int DrawOrder => 3;
         
         public List<Building> Buildings = new List<Building>();
 

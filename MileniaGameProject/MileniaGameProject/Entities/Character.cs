@@ -7,7 +7,7 @@ namespace MileniaGameProject.Entities
 {
     public class Character : IGameEntity, ICollidable
     {
-        public int DrawOrder => 3;
+        public int DrawOrder => 1;
 
         public Sprite IdleSprite;
         public SpriteAnimation WalkUpSprite;
