@@ -27,10 +27,23 @@ namespace MileniaGameProject.Entities
             Map = new Map(_content.Load<Texture2D>(map), character, entryPoints, cameraPosition);
             if (Map.MapTexture.Name == "TowerMap")
             {
-                List<Rectangle> bounds = new List<Rectangle>();
-                bounds.Add(new Rectangle(40, 600, 200, 340));
-                bounds.Add(new Rectangle(400, 600, 200, 340));
-                Milenia.BuildingManager.SpawnBuilding("Arch", Map, new Vector2(680, 600), bounds, Rectangle.Empty);
+                List<Rectangle> archBounds = new List<Rectangle>();
+                archBounds.Add(new Rectangle(40, 765, 200, 175));
+                archBounds.Add(new Rectangle(400, 765, 200, 175));
+                Milenia.BuildingManager.SpawnBuilding("Arch", Map, new Vector2(680, 600), archBounds, Rectangle.Empty);
+                List<Rectangle> invisibleBounds = new List<Rectangle>()
+                {
+                    new Rectangle(0, 6050, 2000, 350),
+                    new Rectangle(1200, 0, 800, 6300),
+                    new Rectangle(0, 0, 200, 5600),
+                    new Rectangle(0, 3100, 800, 2500),
+                    new Rectangle(0, 0, 800, 1850),
+                    new Rectangle(0, 0, 2000, 530)
+                    
+                    
+                    
+                };
+                Milenia.BuildingManager.SpawnBuilding(null, Map, new Vector2(0, 0), invisibleBounds, Rectangle.Empty);
             }
             else
             {

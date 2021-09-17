@@ -51,8 +51,26 @@ namespace MileniaGameProject.Entities
             get
             {
                 int width, height;
-                width = IdleSprite.Width;
-                height = IdleSprite.Height;
+                switch (State)
+                {
+                   
+                    case(CharacterState.WalkUp):
+                        width = WalkUpSprite.MaxWidth; height = WalkUpSprite.CurrentFrame.Sprite.Height;
+                        break;
+                    case(CharacterState.WalkDown):
+                        width = WalkUpSprite.MaxWidth; height = WalkDownSprite.CurrentFrame.Sprite.Height;
+                        break;
+                    case(CharacterState.WalkLeft):
+                        width = WalkLeftSprite.MaxWidth; height = WalkLeftSprite.CurrentFrame.Sprite.Height;
+                        break;
+                    case(CharacterState.WalkRight):
+                        width = WalkRightSprite.MaxWidth; height = WalkRightSprite.CurrentFrame.Sprite.Height;
+                        break;
+                    default: 
+                        width = IdleSprite.Width; height = IdleSprite.Height;
+                        break;
+                }
+                
 
                 Rectangle box = new Rectangle((int) Position.X, (int) Position.Y, width, height);
                 return box;

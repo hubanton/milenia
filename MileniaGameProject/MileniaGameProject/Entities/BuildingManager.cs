@@ -21,7 +21,14 @@ namespace MileniaGameProject.Entities
 
         public void SpawnBuilding(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds, Rectangle entryPoint)
         {
-            Buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
+            if (obstacle == null)
+            {
+                Buildings.Add(new Building(map, mapPosition, null, bounds, entryPoint));
+            }
+            else
+            {
+                Buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
+            }
         }
 
 
@@ -46,6 +53,7 @@ namespace MileniaGameProject.Entities
         {
             foreach (var building in Buildings)
             {
+                
                 building.Draw(gameTime, spriteBatch);
             }
         }

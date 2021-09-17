@@ -43,8 +43,11 @@ namespace MileniaGameProject.Entities
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_obstacleTexture, new Vector2((int) (_mapPosition.X - _map.CameraPosition.X),
-                (int) (_mapPosition.Y - _map.CameraPosition.Y)), Color.White);
+            if (_obstacleTexture != null)
+            {
+                spriteBatch.Draw(_obstacleTexture, new Vector2((int) (_mapPosition.X - _map.CameraPosition.X),
+                    (int) (_mapPosition.Y - _map.CameraPosition.Y)), Color.White);
+            }
         }
 
         protected override void CheckCollisions()
