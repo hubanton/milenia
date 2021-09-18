@@ -33,13 +33,13 @@ namespace MileniaGameProject.Entities
                 Milenia.BuildingManager.SpawnBuilding("Arch", Map, new Vector2(680, 600), archBounds, Rectangle.Empty);
                 List<Rectangle> invisibleBounds = new List<Rectangle>()
                 {
-                    new Rectangle(0, 6050, 2000, 350),
-                    new Rectangle(1200, 0, 800, 6300),
-                    new Rectangle(0, 0, 200, 5600),
-                    new Rectangle(0, 3100, 800, 2500),
-                    new Rectangle(0, 0, 800, 1850),
-                    new Rectangle(0, 0, 2000, 530)
-                    
+                    new Rectangle(0, 0, 175, 5600),
+                    new Rectangle(0, 3000, 700, 2500), // ok
+                    new Rectangle(0, 0, 700, 1800),
+                    new Rectangle(0, 0, 400, 1934),
+                    new Rectangle(1300, 0, 700, 6300), // ok
+                    new Rectangle(0, 6100, 1300, 200), // ok
+                    new Rectangle(700, 0, 600, 550) // ok
                     
                     
                 };
