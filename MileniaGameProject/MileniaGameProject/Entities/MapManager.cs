@@ -39,15 +39,26 @@ namespace MileniaGameProject.Entities
                     new Rectangle(0, 0, 400, 1934),
                     new Rectangle(1300, 0, 700, 6300), // ok
                     new Rectangle(0, 6100, 1300, 200), // ok
-                    new Rectangle(700, 0, 600, 550) // ok
-                    
+                    new Rectangle(700, 0, 600, 550), // ok
+                    new Rectangle(645, 2435, 727, 223)
                     
                 };
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(-45, 5847), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(368, 5804), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(667, 5844), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(923, 5773), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(689, 5119), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(663, 4219), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(617, 3327), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(1116, 3391), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(1143, 2502), null);
+                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(1116, 1524), null);
                 Milenia.BuildingManager.SpawnBuilding(null, Map, new Vector2(0, 0), invisibleBounds, Rectangle.Empty);
             }
             else
             {
                 Milenia.BuildingManager.ClearList();
+                Milenia.ObstacleManager.ClearList();
             }
 
             _inputController = new InputController(character, Map);

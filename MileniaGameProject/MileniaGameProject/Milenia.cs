@@ -47,7 +47,7 @@ namespace MileniaGameProject
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             // Causes the Window to fit the screen size
-            _graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = false;
             // Tabbing outside of Screen no longer collapses Window
             _graphics.HardwareModeSwitch = false;
 
@@ -62,6 +62,7 @@ namespace MileniaGameProject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             BuildingManager = new BuildingManager(Content);
+            ObstacleManager = new ObstacleManager(Content);
             
             _character = new Character(Content.Load<Texture2D>("char"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
@@ -76,6 +77,7 @@ namespace MileniaGameProject
             _entityManager.AddEntity(_character);
             _entityManager.AddEntity(MapManager);
             _entityManager.AddEntity(BuildingManager);
+            _entityManager.AddEntity(ObstacleManager);
         }
 
         protected override void Update(GameTime gameTime)

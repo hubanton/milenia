@@ -12,15 +12,20 @@ namespace MileniaGameProject.Entities
         protected Map _map;
         protected Vector2 _mapPosition;
         protected Texture2D _obstacleTexture;
+        protected List<Rectangle> _bounds;
 
         public virtual List<Rectangle> CollisionBox
         {
             get
             {
                 List<Rectangle> box = new List<Rectangle>();
-                box.Add(new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X),
-                    (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y), _obstacleTexture.Width,
-                    _obstacleTexture.Height));
+                foreach (Rectangle bound in _bounds)
+                {
+                    box.Add(new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + bound.X),
+                        (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + bound.Y), bound.Width,
+                        bound.Height));
+                }
+
                 return box;
             }
         }
@@ -45,7 +50,7 @@ namespace MileniaGameProject.Entities
             List<Rectangle> obstacleCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = _map.Character.CollisionBox;
 
-            foreach (var collisionBox in CollisionBox)
+            foreach (var collisionBox in obstacleCollisionBox)
             {
                 if (collisionBox.Intersects(characterCollisionBox))
                 {
