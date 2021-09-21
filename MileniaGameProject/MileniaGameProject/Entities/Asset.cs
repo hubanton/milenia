@@ -36,16 +36,7 @@ namespace MileniaGameProject.Entities
             _bounds = bounds;
         }
         
-        public new Rectangle CollisionBox
-        {
-            get
-            {
-                Rectangle box = new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X),
-                    (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y), _obstacleTexture.Width,
-                    _obstacleTexture.Height);
-                return box;
-            }
-        }
+      
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

@@ -10,30 +10,13 @@ namespace MileniaGameProject.Entities
     {
 
         private Rectangle _entryPoint;
+
         
-        protected List<Rectangle> _bounds;
-
-
         public Rectangle EntryPoint =>
             new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + _entryPoint.X),
                 (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + _entryPoint.Y), _entryPoint.Width,
                 _entryPoint.Height);
-
-        public override List<Rectangle> CollisionBox
-        {
-            get
-            {
-                List<Rectangle> box = new List<Rectangle>();
-                foreach (var bound in _bounds)
-                {
-                    box.Add(new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + bound.X),
-                        (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + bound.Y), bound.Width,
-                        bound.Height));
-                }
-
-                return box;
-            }
-        }
+        
 
         public Building(Map map, Vector2 mapPosition, Texture2D obstacleTexture, List<Rectangle> bounds, Rectangle entryPoint) : base(map, mapPosition, obstacleTexture)
         {

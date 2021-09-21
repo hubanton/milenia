@@ -33,32 +33,44 @@ namespace MileniaGameProject.Entities
                 Milenia.BuildingManager.SpawnBuilding("Arch", Map, new Vector2(680, 600), archBounds, Rectangle.Empty);
                 List<Rectangle> invisibleBounds = new List<Rectangle>()
                 {
-                    new Rectangle(0, 0, 175, 5600),
-                    new Rectangle(0, 3000, 700, 2500), // ok
-                    new Rectangle(0, 0, 700, 1800),
-                    new Rectangle(0, 0, 400, 1934),
-                    new Rectangle(1300, 0, 700, 6300), // ok
-                    new Rectangle(0, 6100, 1300, 200), // ok
-                    new Rectangle(700, 0, 600, 550), // ok
-                    new Rectangle(645, 2435, 727, 223)
+                    new Rectangle(0, 0, 175, 5500),//passt
+                    new Rectangle(0, 3000, 700, 2500), //passt
+                    new Rectangle(0, 0, 700, 1800), // passt
+                    new Rectangle(1300, 0, 700, 6300), //passt
+                    new Rectangle(0, 6100, 2000, 200), //passt
+                    new Rectangle(700, 0, 600, 550), //passt
+                    new Rectangle(645, 2435, 727, 223) // passt
                     
                 };
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(-45, 5847), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(368, 5804), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(667, 5844), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(923, 5773), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(689, 5119), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(663, 4219), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(617, 3327), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(1116, 3391), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(1143, 2502), null);
-                Milenia.ObstacleManager.SpawnObstacle("tree1", Map, new Vector2(1116, 1524), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree1", Map, new Vector2(-45, 5847), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree2", Map, new Vector2(368, 5804), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree1", Map, new Vector2(667, 5844), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree1", Map, new Vector2(923, 5773), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree2", Map, new Vector2(649, 5119), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree1", Map, new Vector2(663, 4219), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree1", Map, new Vector2(617, 3327), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree2", Map, new Vector2(1116, 3391), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree1", Map, new Vector2(1143, 2502), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("tree2", Map, new Vector2(1116, 1524), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("stone1", Map, new Vector2(537, 5456), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("stone1", Map, new Vector2(588, 2591), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(1210, 5420), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(1225, 673), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(636, 606), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(140, 2017), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(1231, 3151), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("stone1", Map, new Vector2(1190, 4003), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(650, 4862), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(1179, 4987), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("stone1", Map, new Vector2(487, 3063), null);
+                
                 Milenia.BuildingManager.SpawnBuilding(null, Map, new Vector2(0, 0), invisibleBounds, Rectangle.Empty);
             }
             else
             {
                 Milenia.BuildingManager.ClearList();
-                Milenia.ObstacleManager.ClearList();
+                Milenia.ForegroundObstacleManager.ClearList();
+                Milenia.BackgroundObstacleManager.ClearList();
             }
 
             _inputController = new InputController(character, Map);

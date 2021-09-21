@@ -12,7 +12,7 @@ namespace MileniaGameProject.Content.Graphics
     {
         private List<SpriteAnimationFrame> _frames = new List<SpriteAnimationFrame>();
 
-        public int MaxWidth = 0;
+        public int MaxWidth = 5000;
         public SpriteAnimationFrame this[int index]
         {
             get
@@ -73,7 +73,7 @@ namespace MileniaGameProject.Content.Graphics
             SpriteAnimationFrame frame = new SpriteAnimationFrame(sprite, timeStamp);
 
             _frames.Add(frame);
-            if (frame.Sprite.Width > MaxWidth) MaxWidth = frame.Sprite.Width;
+            if (frame.Sprite.Width < MaxWidth) MaxWidth = frame.Sprite.Width;
 
         }
 

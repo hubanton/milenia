@@ -18,7 +18,8 @@ namespace MileniaGameProject
         
         private Character _character;
         public static MapManager MapManager;
-        public static ObstacleManager ObstacleManager;
+        public static ForegroundObstacleManager ForegroundObstacleManager;
+        public static BackgroundObstacleManager BackgroundObstacleManager;
         public static BuildingManager BuildingManager;
 
         public static int DefaultWidth = 1600;
@@ -62,7 +63,8 @@ namespace MileniaGameProject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             BuildingManager = new BuildingManager(Content);
-            ObstacleManager = new ObstacleManager(Content);
+            ForegroundObstacleManager = new ForegroundObstacleManager(Content);
+            BackgroundObstacleManager = new BackgroundObstacleManager(Content);
             
             _character = new Character(Content.Load<Texture2D>("char"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
@@ -77,7 +79,8 @@ namespace MileniaGameProject
             _entityManager.AddEntity(_character);
             _entityManager.AddEntity(MapManager);
             _entityManager.AddEntity(BuildingManager);
-            _entityManager.AddEntity(ObstacleManager);
+            _entityManager.AddEntity(ForegroundObstacleManager);
+            _entityManager.AddEntity(BackgroundObstacleManager);
         }
 
         protected override void Update(GameTime gameTime)
