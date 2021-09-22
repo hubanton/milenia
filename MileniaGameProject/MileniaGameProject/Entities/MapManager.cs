@@ -34,7 +34,7 @@ namespace MileniaGameProject.Entities
                 List<Rectangle> invisibleBounds = new List<Rectangle>()
                 {
                     new Rectangle(0, 0, 175, 5500),//passt
-                    new Rectangle(0, 3000, 700, 2500), //passt
+                    new Rectangle(0, 3100, 700, 2400), //passt
                     new Rectangle(0, 0, 700, 1800), // passt
                     new Rectangle(1300, 0, 700, 6300), //passt
                     new Rectangle(0, 6100, 2000, 200), //passt
@@ -59,10 +59,18 @@ namespace MileniaGameProject.Entities
                 Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(636, 606), null);
                 Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(140, 2017), null);
                 Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(1231, 3151), null);
-                Milenia.BackgroundObstacleManager.SpawnObstacle("stone1", Map, new Vector2(1190, 4003), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("stone1", Map, new Vector2(1190, 4403), null);
                 Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(650, 4862), null);
                 Milenia.BackgroundObstacleManager.SpawnObstacle("bush1", Map, new Vector2(1179, 4987), null);
-                Milenia.BackgroundObstacleManager.SpawnObstacle("stone1", Map, new Vector2(487, 3063), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar1", Map, new Vector2(538, 4918), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar2", Map, new Vector2(1300, 4968), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar3", Map, new Vector2(538, 3784), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar4", Map, new Vector2(1300, 3784), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar5", Map, new Vector2(538, 2884), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar6", Map, new Vector2(1300, 3165), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar7", Map, new Vector2(538, 1984), null);
+                Milenia.ForegroundObstacleManager.SpawnObstacle("pillar8", Map, new Vector2(1300, 1984), null);
+                Milenia.BackgroundObstacleManager.SpawnObstacle("statue", Map, new Vector2(888, 284), null);
                 
                 Milenia.BuildingManager.SpawnBuilding(null, Map, new Vector2(0, 0), invisibleBounds, Rectangle.Empty);
             }
