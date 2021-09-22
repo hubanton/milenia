@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -51,7 +52,7 @@ namespace MileniaGameProject.Entities
             int width = sprite.Width;
             int height = sprite.Height;
 
-            if (EntryPoints != null)
+            if (EntryPoints != null && Character.hasJustLoaded == 0)
             {
                 foreach (var entryPoint in EntryPoints)
                 {
@@ -96,6 +97,8 @@ namespace MileniaGameProject.Entities
                         }
                     }
                 }
+
+                Character.hasJustLoaded = 15;
             }
         }
     }
