@@ -25,6 +25,9 @@ namespace MileniaGameProject.Entities
         public void LoadMap(String map, Character character, List<(Rectangle, String)> entryPoints, Vector2 cameraPosition)
         {
             Map = new Map(_content.Load<Texture2D>(map), character, entryPoints, cameraPosition);
+            Milenia.BuildingManager.ClearList();
+            Milenia.ForegroundObstacleManager.ClearList();
+            Milenia.BackgroundObstacleManager.ClearList();
             if (Map.MapTexture.Name == "TowerMap")
             {
                 List<Rectangle> archBounds = new List<Rectangle>();
@@ -74,11 +77,14 @@ namespace MileniaGameProject.Entities
                 
                 Milenia.BuildingManager.SpawnBuilding(null, Map, new Vector2(0, 0), invisibleBounds, Rectangle.Empty);
             }
-            else
+            else if (Map.MapTexture.Name == "TownMap")
             {
-                Milenia.BuildingManager.ClearList();
-                Milenia.ForegroundObstacleManager.ClearList();
-                Milenia.BackgroundObstacleManager.ClearList();
+                List<Rectangle> settlerBounds = new List<Rectangle>();
+                settlerBounds.Add(new Rectangle(75, 285, 1010, 315));
+                Milenia.BuildingManager.SpawnBuilding("SettlerHouse", Map, new Vector2(5186, 2500), settlerBounds, Rectangle.Empty);
+                List<Rectangle> survavilistBounds = new List<Rectangle>();
+                survavilistBounds.Add(new Rectangle(28, 230, 456, 260));
+                Milenia.BuildingManager.SpawnBuilding("SurvavilistHouse", Map, new Vector2(5645, 320), survavilistBounds, Rectangle.Empty);
             }
 
             _inputController = new InputController(character, Map);
