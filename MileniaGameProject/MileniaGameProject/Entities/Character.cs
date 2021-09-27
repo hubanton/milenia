@@ -46,6 +46,8 @@ namespace MileniaGameProject.Entities
 
         public Vector2 Position;
 
+        public int hasJustLoaded = 0;
+
         public Rectangle CollisionBox
         {
             get
@@ -125,6 +127,11 @@ namespace MileniaGameProject.Entities
                 case CharacterState.WalkRight:
                     WalkRightSprite.Update(gameTime);
                     break;
+            }
+
+            if (hasJustLoaded != 0)
+            {
+                --hasJustLoaded;
             }
         }
 

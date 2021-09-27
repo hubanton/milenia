@@ -27,6 +27,11 @@ namespace MileniaGameProject.Entities
         public static int BushOneWidth = 152;
         public static int BushOneHeight = 136;
         public static List<Rectangle> BushOneBounds = new List<Rectangle>();
+        public static int StatueX = 1000;
+        public static int StatueY = 550;
+        public static int StatueWidth = 224;
+        public static int StatueHeight = 488;
+        public static List<Rectangle> StatueBounds = new List<Rectangle>();
 
         public BackgroundObstacleManager(ContentManager content)
         {
@@ -35,6 +40,7 @@ namespace MileniaGameProject.Entities
             ForestSpritesheet = _content.Load<Texture2D>("ForestSpritesheet");
             StoneOneBounds.Add(new Rectangle(40, 0, 112, 50));
             BushOneBounds.Add(new Rectangle(0, 0, 152, 66));
+            StatueBounds.Add(new Rectangle(0, 200, 224, 200));
         }
 
         public void SpawnObstacle(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds)
@@ -46,6 +52,9 @@ namespace MileniaGameProject.Entities
                     break;
                 case("bush1"): 
                     Obstacles.Add(new Asset(map, mapPosition, ForestSpritesheet, BushOneX, BushOneY, BushOneWidth, BushOneHeight, BushOneBounds));
+                    break;
+                case("statue"): 
+                    Obstacles.Add(new Asset(map, mapPosition, ForestSpritesheet, StatueX, StatueY, StatueWidth, StatueHeight, StatueBounds));
                     break;
                 default:
                     Obstacles.Add(new Asset(map, mapPosition, _content.Load<Texture2D>(obstacle), 0, 0, null, null, bounds));
