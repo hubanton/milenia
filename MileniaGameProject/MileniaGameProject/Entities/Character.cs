@@ -15,6 +15,12 @@ namespace MileniaGameProject.Entities
         public SpriteAnimation WalkLeftSprite;
         public SpriteAnimation WalkRightSprite;
 
+        public int numLoops = 0;
+
+        public static int Health = 50;
+        public static int Mana = 50;
+        public static int Experience = 50;
+
         private int _idleX = 0;
         private int _idleY = 0;
         private int _idleWidth = 80;
@@ -113,6 +119,15 @@ namespace MileniaGameProject.Entities
 
         public void Update(GameTime gameTime)
         {
+            if (Health < 100 && numLoops == 20)
+            {
+                numLoops = 0;
+                ++Health;
+            }
+            else
+            {
+                ++numLoops;
+            }
             switch (State)
             {
                 case CharacterState.WalkUp:
