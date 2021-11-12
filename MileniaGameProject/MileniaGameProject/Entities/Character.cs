@@ -15,11 +15,22 @@ namespace MileniaGameProject.Entities
         public SpriteAnimation WalkLeftSprite;
         public SpriteAnimation WalkRightSprite;
 
-        public int numLoops = 0;
+        public int NumLoops = 0;
 
-        public static int Health = 50;
-        public static int Mana = 50;
-        public static int Experience = 50;
+        public static int Level = 1;
+        
+        public static int CurHealth = 500;
+        public static int MaxHealth = 1000;
+        public static int CurMana = 500;
+        public static int MaxMana = 1000;
+        public static int CurExperience = 500;
+        public static int MaxExperience = 1000;
+
+        public static int Strength;
+        public static int Endurance;
+        public static int Intelligence;
+        public static int Precision;
+        public static int Charisma;
 
         private int _idleX = 0;
         private int _idleY = 0;
@@ -119,14 +130,14 @@ namespace MileniaGameProject.Entities
 
         public void Update(GameTime gameTime)
         {
-            if (Health < 100 && numLoops == 20)
+            if (CurHealth < 1000 && NumLoops == 1)
             {
-                numLoops = 0;
-                ++Health;
+                NumLoops = 0;
+                ++CurHealth;
             }
             else
             {
-                ++numLoops;
+                ++NumLoops;
             }
             switch (State)
             {

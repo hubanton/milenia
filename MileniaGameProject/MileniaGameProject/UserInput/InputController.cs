@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Schema;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -9,6 +10,9 @@ namespace MileniaGameProject.UserInput
     public class InputController
     {
         private KeyboardState _previousKeyboardState;
+        private MouseState _previousMouseState;
+
+        private int _previousScrollValue;
 
         private Character _character;
         private Map _map;
@@ -27,9 +31,23 @@ namespace MileniaGameProject.UserInput
         public void ProcessControls(GameTime gameTime, Map map)
         {
             KeyboardState keyboardState = Keyboard.GetState();
+            MouseState mouseState = Mouse.GetState();
             int punish = 0;
             Keys[] keys = keyboardState.GetPressedKeys();
 
+            Keys[] numKeys = new Keys[]
+            {
+                Keys.D0,
+                Keys.D1,
+                Keys.D2,
+                Keys.D3,
+                Keys.D4,
+                Keys.D5,
+                Keys.D6,
+                Keys.D7,
+                Keys.D8,
+                Keys.D9
+            };
 
             bool isWalkUpwardsPressed = (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W));
             bool isWalkDownwardsPressed =
@@ -43,6 +61,30 @@ namespace MileniaGameProject.UserInput
             bool isDiagonalUpRight = isWalkUpwardsPressed && isWalkRightPressed;
             bool isDiagonalDownLeft = isWalkDownwardsPressed && isWalkLeftPressed;
             bool isDiagonalDownRight = isWalkDownwardsPressed && isWalkRightPressed;
+
+            foreach (var number in numKeys)
+            {
+                if (keyboardState.IsKeyDown(number))
+                {
+                    if (number != Keys.D0)
+                    {
+                        UserInterface.curInvSelection = (int) number - ((int) Keys.D0 + 1);
+                    }
+                    else
+                    {
+                        UserInterface.curInvSelection = 9;
+                    }
+                }
+            }
+
+            if (mouseState.ScrollWheelValue > _previousScrollValue)
+            {
+                UserInterface.curInvSelection = ++UserInterface.curInvSelection % 10;
+            } else if (mouseState.ScrollWheelValue < _previousScrollValue)
+            {
+                UserInterface.curInvSelection = UserInterface.curInvSelection != 0 ? --UserInterface.curInvSelection : 9;
+            }
+            _previousScrollValue = mouseState.ScrollWheelValue;
 
             if (isWalkLeftPressed)
             {
@@ -128,6 +170,7 @@ namespace MileniaGameProject.UserInput
             }
 
             _previousKeyboardState = keyboardState;
+            _previousMouseState = mouseState;
 
             map.canMoveDown = true;
             map.canMoveUp = true;

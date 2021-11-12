@@ -71,7 +71,7 @@ namespace MileniaGameProject
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
 
             _userInterface =
-                new UserInterface(Content.Load<Texture2D>("inventoryBar"), Content.Load<Texture2D>("statBar"),
+                new UserInterface(Content.Load<Texture2D>("inventoryBar"), Content.Load<Texture2D>("invSelect"), Content.Load<Texture2D>("statBar"),
                     Content.Load<Texture2D>("hpBar"), Content.Load<Texture2D>("manaBar"), Content.Load<Texture2D>("expBar"));
 
             MapManager = new MapManager(Content);
