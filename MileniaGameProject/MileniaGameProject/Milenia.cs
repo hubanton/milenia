@@ -102,7 +102,7 @@ namespace MileniaGameProject
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin(transformMatrix: ScaleMatrix);
             _entityManager.Draw(_spriteBatch, gameTime);

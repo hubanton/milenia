@@ -21,6 +21,7 @@ namespace MileniaGameProject.UserInput
         private int _velocity = 10;
 
         private double squareOfTwo = Math.Sqrt(2) / 2;
+        private int TearFix = 5;
 
         public InputController(Character character, Map map)
         {
@@ -116,7 +117,7 @@ namespace MileniaGameProject.UserInput
 
             if (map.canMoveDown &&
                 isWalkDownwardsPressed &&
-                map.CameraPosition.Y < ((map.MapTexture.Height - Milenia.DefaultHeight)) && _character.Position.Y >=
+                map.CameraPosition.Y < (map.MapTexture.Height - Milenia.DefaultHeight) && _character.Position.Y >=
                 (Milenia.DefaultHeight - Collision.Height) / 2) // need to subtract character height
             {
                 map.CameraPosition.Y += _velocity - punish;
@@ -130,7 +131,7 @@ namespace MileniaGameProject.UserInput
 
             if (map.canMoveUp &&
                 isWalkUpwardsPressed && _map.CameraPosition.Y > 0 &&
-                _character.Position.Y <= Milenia.DefaultHeight / 2)
+                _character.Position.Y <= Milenia.DefaultHeight / 2 )
             {
                 _map.CameraPosition.Y -= _velocity - punish;
             }
@@ -143,7 +144,7 @@ namespace MileniaGameProject.UserInput
 
             if (map.canMoveLeft &&
                 isWalkLeftPressed && _map.CameraPosition.X > 0 &&
-                _character.Position.X <= (Milenia.DefaultWidth - Collision.Width) / 2)
+                _character.Position.X <= (Milenia.DefaultWidth - Collision.Width - TearFix) / 2)
             {
                 _map.CameraPosition.X -= _velocity - punish;
             }
@@ -157,7 +158,7 @@ namespace MileniaGameProject.UserInput
             if (
                 map.canMoveRight &&
                 isWalkRightPressed && map.MapTexture.Width - Milenia.DefaultWidth > 0 &&
-                _map.CameraPosition.X <= (map.MapTexture.Width - Milenia.DefaultWidth) &&
+                _map.CameraPosition.X <= (map.MapTexture.Width - Milenia.DefaultWidth - TearFix) &&
                 _character.Position.X >= (Milenia.DefaultWidth - Collision.Width) / 2)
             {
                 _map.CameraPosition.X += _velocity - punish;

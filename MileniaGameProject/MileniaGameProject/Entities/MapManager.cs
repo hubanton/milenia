@@ -41,7 +41,7 @@ namespace MileniaGameProject.Entities
                     new Rectangle(0, 0, 700, 1800), // passt
                     new Rectangle(1300, 0, 700, 6300), //passt
                     new Rectangle(0, 6100, 2000, 200), //passt
-                    new Rectangle(700, 0, 600, 550), //passt
+                    new Rectangle(700, 0, 600, 500), //passt
                     new Rectangle(645, 2435, 727, 223) // passt
                     
                 };
@@ -73,7 +73,7 @@ namespace MileniaGameProject.Entities
                 Milenia.ForegroundObstacleManager.SpawnObstacle("pillar6", Map, new Vector2(1300, 3165), null);
                 Milenia.ForegroundObstacleManager.SpawnObstacle("pillar7", Map, new Vector2(538, 1984), null);
                 Milenia.ForegroundObstacleManager.SpawnObstacle("pillar8", Map, new Vector2(1300, 1984), null);
-                Milenia.BackgroundObstacleManager.SpawnObstacle("statue", Map, new Vector2(888, 284), null);
+                //Milenia.BackgroundObstacleManager.SpawnObstacle("statue", Map, new Vector2(888, 284), null);
                 
                 Milenia.BuildingManager.SpawnBuilding(null, Map, new Vector2(0, 0), invisibleBounds, Rectangle.Empty);
             }
