@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MileniaGameProject.Content.Graphics;
+using MileniaGameProject.SupportFiles;
+using MileniaGameProject.UserInput;
 
 namespace MileniaGameProject.Entities
 {
@@ -163,24 +165,32 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            switch (State)
+            if (InputController.GameState == GameState.IN_GAME)
             {
-                case CharacterState.WalkUp:
-                    WalkUpSprite.Draw(spriteBatch, Position);
-                    break;
-                case CharacterState.WalkDown:
-                    WalkDownSprite.Draw(spriteBatch, Position);
-                    break;
-                case CharacterState.WalkLeft:
-                    WalkLeftSprite.Draw(spriteBatch, Position);
-                    break;
-                case CharacterState.WalkRight:
-                    WalkRightSprite.Draw(spriteBatch, Position);
-                    break;
-                default:
+                switch (State)
+                {
+                    case CharacterState.WalkUp:
+                        WalkUpSprite.Draw(spriteBatch, Position);
+                        break;
+                    case CharacterState.WalkDown:
+                        WalkDownSprite.Draw(spriteBatch, Position);
+                        break;
+                    case CharacterState.WalkLeft:
+                        WalkLeftSprite.Draw(spriteBatch, Position);
+                        break;
+                    case CharacterState.WalkRight:
+                        WalkRightSprite.Draw(spriteBatch, Position);
+                        break;
+                    default:
+                        IdleSprite.Draw(spriteBatch, Position);
+                        break;
+                } 
+            } else if (InputController.GameState == GameState.INVETORY)
+            {
                     IdleSprite.Draw(spriteBatch, Position);
-                    break;
-            }
+            } 
+            
+            
         }
 
 

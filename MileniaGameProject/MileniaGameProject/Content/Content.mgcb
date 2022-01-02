@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:char.png
 
+#begin DarkBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DarkBox.png
+
 #begin expBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -229,6 +241,18 @@
 /processorParam:TextureFormat=Color
 /build:inventoryBar.png
 
+#begin inventoryWhole.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:inventoryWhole.png
+
 #begin invSelect.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -264,6 +288,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PlayerBaseProto.png
+
+#begin Skilltree.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Skilltree.png
 
 #begin statBar.png
 /importer:TextureImporter

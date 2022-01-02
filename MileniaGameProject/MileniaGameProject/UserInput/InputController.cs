@@ -4,6 +4,7 @@ using System.Xml.Schema;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MileniaGameProject.Entities;
+using MileniaGameProject.SupportFiles;
 
 namespace MileniaGameProject.UserInput
 {
@@ -12,6 +13,8 @@ namespace MileniaGameProject.UserInput
         private KeyboardState _previousKeyboardState;
         private MouseState _previousMouseState;
 
+        public static GameState GameState = GameState.IN_GAME;
+        
         private int _previousScrollValue;
 
         private Character _character;
@@ -50,7 +53,33 @@ namespace MileniaGameProject.UserInput
                 Keys.D9
             };
 
-            bool isWalkUpwardsPressed = (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W));
+            if (keyboardState.IsKeyDown(Keys.I) && !_previousKeyboardState.IsKeyDown(Keys.I))
+            {
+                if (GameState != GameState.INVETORY)
+                {
+                    GameState = GameState.INVETORY;
+                }
+                else
+                {
+                    GameState = GameState.IN_GAME;
+                }
+            } 
+            
+            if (keyboardState.IsKeyDown(Keys.K) && !_previousKeyboardState.IsKeyDown(Keys.K))
+            {
+                if (GameState != GameState.SKILLTREE)
+                {
+                    GameState = GameState.SKILLTREE;
+                }
+                else
+                {
+                    GameState = GameState.IN_GAME;
+                }
+            } 
+
+            if (GameState != GameState.INVETORY && GameState != GameState.SKILLTREE)
+            {
+                bool isWalkUpwardsPressed = (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W));
             bool isWalkDownwardsPressed =
                 (_previousKeyboardState.IsKeyDown(Keys.Down) || _previousKeyboardState.IsKeyDown(Keys.S));
             bool isWalkLeftPressed =
@@ -169,6 +198,8 @@ namespace MileniaGameProject.UserInput
             {
                 _character.Position.X += _velocity - punish;
             }
+            }
+            
 
             _previousKeyboardState = keyboardState;
             _previousMouseState = mouseState;

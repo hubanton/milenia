@@ -18,6 +18,7 @@ namespace MileniaGameProject
 
         private Character _character;
         private UserInterface _userInterface;
+        private ToggleInterface _toggleInterface;
         public static MapManager MapManager;
         public static ForegroundObstacleManager ForegroundObstacleManager;
         public static BackgroundObstacleManager BackgroundObstacleManager;
@@ -73,7 +74,8 @@ namespace MileniaGameProject
             _userInterface =
                 new UserInterface(Content.Load<Texture2D>("inventoryBar"), Content.Load<Texture2D>("invSelect"), Content.Load<Texture2D>("statBar"),
                     Content.Load<Texture2D>("hpBar"), Content.Load<Texture2D>("manaBar"), Content.Load<Texture2D>("expBar"));
-
+            _toggleInterface = new ToggleInterface(Content.Load<Texture2D>("inventoryWhole"),
+                Content.Load<Texture2D>("Skilltree"), Content.Load<Texture2D>("DarkBox"));
             MapManager = new MapManager(Content);
             List<(Rectangle, String)> entryPoints = new List<(Rectangle, string)>();
             entryPoints.Add((new Rectangle(0, 580, 1, 100), "TownMap"));
@@ -87,6 +89,7 @@ namespace MileniaGameProject
             _entityManager.AddEntity(ForegroundObstacleManager);
             _entityManager.AddEntity(BackgroundObstacleManager);
             _entityManager.AddEntity(_userInterface);
+            _entityManager.AddEntity(_toggleInterface);
         }
 
         protected override void Update(GameTime gameTime)
