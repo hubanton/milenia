@@ -23,6 +23,7 @@ namespace MileniaGameProject
         public static ForegroundObstacleManager ForegroundObstacleManager;
         public static BackgroundObstacleManager BackgroundObstacleManager;
         public static BuildingManager BuildingManager;
+        public static NPCManager NPCManager;
 
         public static int DefaultWidth = 1600;
         public static int DefaultHeight = 900;
@@ -64,6 +65,8 @@ namespace MileniaGameProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            SpriteFont npcFont = Content.Load<SpriteFont>("NPCfont");
+            NPCManager = new NPCManager(Content, npcFont);
             BuildingManager = new BuildingManager(Content);
             ForegroundObstacleManager = new ForegroundObstacleManager(Content);
             BackgroundObstacleManager = new BackgroundObstacleManager(Content);
@@ -86,6 +89,7 @@ namespace MileniaGameProject
             _entityManager.AddEntity(_character);
             _entityManager.AddEntity(MapManager);
             _entityManager.AddEntity(BuildingManager);
+            _entityManager.AddEntity(NPCManager);
             _entityManager.AddEntity(ForegroundObstacleManager);
             _entityManager.AddEntity(BackgroundObstacleManager);
             _entityManager.AddEntity(_userInterface);

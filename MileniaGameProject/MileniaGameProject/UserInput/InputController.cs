@@ -13,12 +13,14 @@ namespace MileniaGameProject.UserInput
         private KeyboardState _previousKeyboardState;
         private MouseState _previousMouseState;
 
-        public static GameState GameState = GameState.IN_GAME;
+        public static GameState GameState = GameState.InGame;
         
         private int _previousScrollValue;
 
         private Character _character;
         private Map _map;
+        private NPC talkableNPC;
+        private string _textToShow;
 
         //Determines speed of player
         private int _velocity = 10;
@@ -53,31 +55,58 @@ namespace MileniaGameProject.UserInput
                 Keys.D9
             };
 
-            if (keyboardState.IsKeyDown(Keys.I) && !_previousKeyboardState.IsKeyDown(Keys.I))
+            if (GameState == GameState.Talking)
             {
-                if (GameState != GameState.INVETORY)
+
+                if (keyboardState.IsKeyDown(Keys.E) && !_previousKeyboardState.IsKeyDown(Keys.E))
                 {
-                    GameState = GameState.INVETORY;
+                    talkableNPC.IsTalking = false;
+                    Milenia.NPCManager.Talking = false;
+                    GameState = GameState.InGame;
                 }
                 else
                 {
-                    GameState = GameState.IN_GAME;
+                    _previousKeyboardState = keyboardState;
+                    return;
+                }
+            }
+            else if (keyboardState.IsKeyDown(Keys.E) && !_previousKeyboardState.IsKeyDown(Keys.E) && GameState == GameState.InGame)
+            {
+                talkableNPC = Milenia.NPCManager.FindTalkableNPC();
+                if (talkableNPC != null)
+                {
+                    GameState = GameState.Talking;
+                    talkableNPC.IsTalking = true;
+                    _previousKeyboardState = keyboardState;
+                    return;
+                }
+            }
+
+            if (keyboardState.IsKeyDown(Keys.I) && !_previousKeyboardState.IsKeyDown(Keys.I))
+            {
+                if (GameState != GameState.Inventory)
+                {
+                    GameState = GameState.Inventory;
+                }
+                else
+                {
+                    GameState = GameState.InGame;
                 }
             } 
             
             if (keyboardState.IsKeyDown(Keys.K) && !_previousKeyboardState.IsKeyDown(Keys.K))
             {
-                if (GameState != GameState.SKILLTREE)
+                if (GameState != GameState.Skilltree)
                 {
-                    GameState = GameState.SKILLTREE;
+                    GameState = GameState.Skilltree;
                 }
                 else
                 {
-                    GameState = GameState.IN_GAME;
+                    GameState = GameState.InGame;
                 }
-            } 
+            }
 
-            if (GameState != GameState.INVETORY && GameState != GameState.SKILLTREE)
+            if (GameState != GameState.Inventory && GameState != GameState.Skilltree)
             {
                 bool isWalkUpwardsPressed = (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W));
             bool isWalkDownwardsPressed =

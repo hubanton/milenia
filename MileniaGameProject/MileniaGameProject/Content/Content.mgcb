@@ -49,6 +49,18 @@
 /processorParam:TextureFormat=Color
 /build:DarkBox.png
 
+#begin DialogTextbox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DialogTextbox.png
+
 #begin expBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -265,6 +277,18 @@
 /processorParam:TextureFormat=Color
 /build:invSelect.png
 
+#begin Joe.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Joe.png
+
 #begin manaBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -276,6 +300,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:manaBar.png
+
+#begin NPCfont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:NPCfont.spritefont
 
 #begin PlayerBaseProto.png
 /importer:TextureImporter

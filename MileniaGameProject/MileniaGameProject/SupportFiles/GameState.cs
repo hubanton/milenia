@@ -2,8 +2,9 @@
 {
     public enum GameState
     {
-        IN_GAME,
-        INVETORY,
-        SKILLTREE
+        InGame,
+        Inventory,
+        Skilltree,
+        Talking
     }
 }

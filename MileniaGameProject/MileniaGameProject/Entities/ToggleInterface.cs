@@ -38,15 +38,15 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (InputController.GameState != GameState.IN_GAME)
+            if (InputController.GameState == GameState.Inventory || InputController.GameState == GameState.Skilltree)
             {
                 spriteBatch.Draw(_blackBox, Vector2.Zero, Color.White * 0.5f);
             }
             
-            if (InputController.GameState == GameState.INVETORY)
+            if (InputController.GameState == GameState.Inventory)
             {
                 spriteBatch.Draw(_inventoryTexture, _invPos, Color.White);
-            } else if (InputController.GameState == GameState.SKILLTREE)
+            } else if (InputController.GameState == GameState.Skilltree)
             {
                 spriteBatch.Draw(_skillTreeTexture, _treePos, Color.White);
             }

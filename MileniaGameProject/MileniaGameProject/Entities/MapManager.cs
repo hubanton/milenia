@@ -79,6 +79,10 @@ namespace MileniaGameProject.Entities
             }
             else if (Map.MapTexture.Name == "TownMap")
             {
+                // NPCs
+                Milenia.NPCManager.SpawnNPC("Joe", Map, new Vector2(5800, 3300));
+                
+                // Houses
                 List<Rectangle> settlerBounds = new List<Rectangle>();
                 settlerBounds.Add(new Rectangle(75, 285, 1010, 315));
                 Milenia.BuildingManager.SpawnBuilding("houses/SettlerHouse", Map, new Vector2(5186, 2500), settlerBounds, Rectangle.Empty);

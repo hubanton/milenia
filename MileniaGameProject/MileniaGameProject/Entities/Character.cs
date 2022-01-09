@@ -165,7 +165,7 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (InputController.GameState == GameState.IN_GAME)
+            if (InputController.GameState == GameState.InGame)
             {
                 switch (State)
                 {
@@ -185,7 +185,7 @@ namespace MileniaGameProject.Entities
                         IdleSprite.Draw(spriteBatch, Position);
                         break;
                 } 
-            } else if (InputController.GameState == GameState.INVETORY)
+            } else
             {
                     IdleSprite.Draw(spriteBatch, Position);
             } 
