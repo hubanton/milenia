@@ -190,7 +190,6 @@ namespace MileniaGameProject.Entities
                     IdleSprite.Draw(spriteBatch, Position);
             } 
             
-            
         }
 
 

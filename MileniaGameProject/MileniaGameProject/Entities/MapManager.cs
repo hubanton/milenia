@@ -28,6 +28,7 @@ namespace MileniaGameProject.Entities
             Milenia.BuildingManager.ClearList();
             Milenia.ForegroundObstacleManager.ClearList();
             Milenia.BackgroundObstacleManager.ClearList();
+            Milenia.NPCManager.ClearList();
             if (Map.MapTexture.Name == "TowerMap")
             {
                 List<Rectangle> archBounds = new List<Rectangle>();
@@ -143,7 +144,7 @@ namespace MileniaGameProject.Entities
         public void Update(GameTime gameTime)
         {
             //Activates Input Listener for KeyboardControls
-            _inputController.ProcessControls(gameTime, Map);
+            _inputController.ProcessControls(gameTime);
             
             Map.Update(gameTime);
         }
