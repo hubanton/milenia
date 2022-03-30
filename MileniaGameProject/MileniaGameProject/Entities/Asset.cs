@@ -33,15 +33,15 @@ namespace MileniaGameProject.Entities
                 _sheetHeight = obstacleTexture.Height;
             }
 
-            _bounds = bounds;
+            Bounds = bounds;
         }
         
       
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_obstacleTexture, new Vector2((int) (_mapPosition.X - _map.CameraPosition.X),
-                (int) (_mapPosition.Y - _map.CameraPosition.Y)), new Rectangle(_sheetX, _sheetY, _sheetWidth, _sheetHeight), Color.White);
+            spriteBatch.Draw(ObstacleTexture, new Vector2((int) (MapPosition.X - Map.CameraPosition.X),
+                (int) (MapPosition.Y - Map.CameraPosition.Y)), new Rectangle(_sheetX, _sheetY, _sheetWidth, _sheetHeight), Color.White);
         }
 
 

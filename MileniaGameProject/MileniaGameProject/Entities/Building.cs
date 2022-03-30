@@ -13,30 +13,30 @@ namespace MileniaGameProject.Entities
 
         
         public Rectangle EntryPoint =>
-            new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + _entryPoint.X),
-                (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + _entryPoint.Y), _entryPoint.Width,
+            new Rectangle((int) Math.Round(MapPosition.X - Map.CameraPosition.X + _entryPoint.X),
+                (int) Math.Round(MapPosition.Y - Map.CameraPosition.Y + _entryPoint.Y), _entryPoint.Width,
                 _entryPoint.Height);
         
 
         public Building(Map map, Vector2 mapPosition, Texture2D obstacleTexture, List<Rectangle> bounds, Rectangle entryPoint) : base(map, mapPosition, obstacleTexture)
         {
-            if (bounds != null) _bounds = bounds;
+            if (bounds != null) Bounds = bounds;
             _entryPoint = entryPoint;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (_obstacleTexture != null)
+            if (ObstacleTexture != null)
             {
-                spriteBatch.Draw(_obstacleTexture, new Vector2((int) (_mapPosition.X - _map.CameraPosition.X),
-                    (int) (_mapPosition.Y - _map.CameraPosition.Y)), Color.White);
+                spriteBatch.Draw(ObstacleTexture, new Vector2((int) (MapPosition.X - Map.CameraPosition.X),
+                    (int) (MapPosition.Y - Map.CameraPosition.Y)), Color.White);
             }
         }
 
         protected override void CheckCollisions()
         {
             List<Rectangle> obstacleCollisionBox = CollisionBox;
-            Rectangle characterCollisionBox = _map.Character.CollisionBox;
+            Rectangle characterCollisionBox = Map.Character.CollisionBox;
 
             Rectangle doorCollisionBox = EntryPoint;
             
@@ -58,24 +58,24 @@ namespace MileniaGameProject.Entities
 
                         if (tempRect.Width <= tempRect.Height)
                         {
-                            if (tempRect.X > _map.Character.Position.X)
+                            if (tempRect.X > Map.Character.Position.X)
                             {
-                                _map.canMoveRight = false;
+                                Map.canMoveRight = false;
                             }
                             else
                             {
-                                _map.canMoveLeft = false;
+                                Map.canMoveLeft = false;
                             }
                         }
                         else
                         {
-                            if (tempRect.Y > _map.Character.Position.Y)
+                            if (tempRect.Y > Map.Character.Position.Y)
                             {
-                                _map.canMoveDown = false;
+                                Map.canMoveDown = false;
                             }
                             else
                             {
-                                _map.canMoveUp = false;
+                                Map.canMoveUp = false;
                             }
                         }
                     }

@@ -7,22 +7,28 @@ namespace MileniaGameProject.Entities
 {
     public abstract class Obstacle : IGameEntity, ICollidables
     {
+        /// <summary>
+        /// abstract class from which all objects inherit
+        /// </summary>
         public int DrawOrder => 4;
         
-        protected Map _map;
-        protected Vector2 _mapPosition;
-        protected Texture2D _obstacleTexture;
-        protected List<Rectangle> _bounds;
+        protected readonly Map Map;
+        protected Vector2 MapPosition;
+        protected readonly Texture2D ObstacleTexture;
+        protected List<Rectangle> Bounds;
 
+        /// <summary>
+        /// returns a list of bounds to check collision with player
+        /// </summary>
         public virtual List<Rectangle> CollisionBox
         {
             get
             {
                 List<Rectangle> box = new List<Rectangle>();
-                foreach (Rectangle bound in _bounds)
+                foreach (Rectangle bound in Bounds)
                 {
-                    box.Add(new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + bound.X),
-                        (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + bound.Y), bound.Width,
+                    box.Add(new Rectangle((int) Math.Round(MapPosition.X - Map.CameraPosition.X + bound.X),
+                        (int) Math.Round(MapPosition.Y - Map.CameraPosition.Y + bound.Y), bound.Width,
                         bound.Height));
                 }
 
@@ -30,11 +36,17 @@ namespace MileniaGameProject.Entities
             }
         }
 
-        public Obstacle(Map map, Vector2 mapPosition, Texture2D obstacleTexture)
+        /// <summary>
+        /// gets extendend by sub classes to include more attributes and specific knowledge
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="mapPosition"></param>
+        /// <param name="obstacleTexture"></param>
+        protected Obstacle(Map map, Vector2 mapPosition, Texture2D obstacleTexture)
         {
-            _map = map;
-            _mapPosition = mapPosition;
-            _obstacleTexture = obstacleTexture;
+            Map = map;
+            MapPosition = mapPosition;
+            ObstacleTexture = obstacleTexture;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -45,10 +57,13 @@ namespace MileniaGameProject.Entities
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
 
+        /// <summary>
+        /// checks if player collides with that obstacle and prevents the player from further moving in that direction
+        /// </summary>
         protected virtual void CheckCollisions()
         {
             List<Rectangle> obstacleCollisionBox = CollisionBox;
-            Rectangle characterCollisionBox = _map.Character.CollisionBox;
+            Rectangle characterCollisionBox = Map.Character.CollisionBox;
 
             foreach (var collisionBox in obstacleCollisionBox)
             {
@@ -58,24 +73,24 @@ namespace MileniaGameProject.Entities
 
                     if (tempRect.Width <= tempRect.Height)
                     {
-                        if (tempRect.X > _map.Character.Position.X)
+                        if (tempRect.X > Map.Character.Position.X)
                         {
-                            _map.canMoveRight = false;
+                            Map.canMoveRight = false;
                         }
                         else
                         {
-                            _map.canMoveLeft = false;
+                            Map.canMoveLeft = false;
                         }
                     }
                     else
                     {
-                        if (tempRect.Y > _map.Character.Position.Y)
+                        if (tempRect.Y > Map.Character.Position.Y)
                         {
-                            _map.canMoveDown = false;
+                            Map.canMoveDown = false;
                         }
                         else
                         {
-                            _map.canMoveUp = false;
+                            Map.canMoveUp = false;
                         }
                     }
                 }
