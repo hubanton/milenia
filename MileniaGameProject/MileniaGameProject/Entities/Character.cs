@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MileniaGameProject.Content.Graphics;
+using MileniaGameProject.Graphics;
 using MileniaGameProject.SupportFiles;
 using MileniaGameProject.UserInput;
 
@@ -59,7 +59,7 @@ namespace MileniaGameProject.Entities
         private int _rightWidth = 120;
         private int _rightHeight = 140;
 
-        public static int RUNNING_ANIMATION_LENGTH = 6;
+        public static int RUNNING_ANIMATION_FRAME_DURATION = 6;
 
         public CharacterState State = CharacterState.Idle;
 
@@ -76,16 +76,16 @@ namespace MileniaGameProject.Entities
                 {
                    
                     case(CharacterState.WalkUp):
-                        width = WalkUpSprite.MaxWidth; height = WalkUpSprite.CurrentFrame.Sprite.Height;
+                        width = WalkUpSprite.CurrentFrame.Sprite.Width; height = WalkUpSprite.CurrentFrame.Sprite.Height;
                         break;
                     case(CharacterState.WalkDown):
-                        width = WalkUpSprite.MaxWidth; height = WalkDownSprite.CurrentFrame.Sprite.Height;
+                        width = WalkDownSprite.CurrentFrame.Sprite.Width; height = WalkDownSprite.CurrentFrame.Sprite.Height;
                         break;
                     case(CharacterState.WalkLeft):
-                        width = WalkLeftSprite.MaxWidth; height = WalkLeftSprite.CurrentFrame.Sprite.Height;
+                        width = WalkLeftSprite.CurrentFrame.Sprite.Width; height = WalkLeftSprite.CurrentFrame.Sprite.Height;
                         break;
                     case(CharacterState.WalkRight):
-                        width = WalkRightSprite.MaxWidth; height = WalkRightSprite.CurrentFrame.Sprite.Height;
+                        width = WalkRightSprite.CurrentFrame.Sprite.Width; height = WalkRightSprite.CurrentFrame.Sprite.Height;
                         break;
                     default: 
                         width = IdleSprite.Width; height = IdleSprite.Height;
@@ -105,27 +105,27 @@ namespace MileniaGameProject.Entities
             IdleSprite = new Sprite(character, _idleX, _idleY, _idleWidth, _idleHeight);
             WalkUpSprite = new SpriteAnimation();
             WalkUpSprite.AddFrame(new Sprite(character, _upX, _upY, _upWidth, _upHeight), 0);
-            WalkUpSprite.AddFrame(new Sprite(character, _upX + _upWidth, _upY, _upWidth, _upHeight), RUNNING_ANIMATION_LENGTH);
-            WalkUpSprite.AddFrame(new Sprite(character, _upX + (2 * _upWidth), _upY, _upWidth, _upHeight), RUNNING_ANIMATION_LENGTH * 2);
-            WalkUpSprite.AddFrame(new Sprite(character, _upX + (3 * _upWidth), _upY, _upWidth, _upHeight), RUNNING_ANIMATION_LENGTH * 3);
+            WalkUpSprite.AddFrame(new Sprite(character, _upX + _upWidth, _upY, _upWidth, _upHeight), RUNNING_ANIMATION_FRAME_DURATION);
+            WalkUpSprite.AddFrame(new Sprite(character, _upX + (2 * _upWidth), _upY, _upWidth, _upHeight), RUNNING_ANIMATION_FRAME_DURATION * 2);
+            WalkUpSprite.AddFrame(new Sprite(character, _upX + (3 * _upWidth), _upY, _upWidth, _upHeight), RUNNING_ANIMATION_FRAME_DURATION * 3);
             WalkUpSprite.Play();
             WalkDownSprite = new SpriteAnimation();
             WalkDownSprite.AddFrame(new Sprite(character, _downX, _downY, _downWidth, _downHeight), 0);
-            WalkDownSprite.AddFrame(new Sprite(character, _downX + _downWidth, _downY, _downWidth, _downHeight), RUNNING_ANIMATION_LENGTH);
-            WalkDownSprite.AddFrame(new Sprite(character, _downX + (2 * _downWidth), _downY, _downWidth, _downHeight), RUNNING_ANIMATION_LENGTH * 2);
-            WalkDownSprite.AddFrame(new Sprite(character, _downX + (3 * _downWidth), _downY, _downWidth, _downHeight), RUNNING_ANIMATION_LENGTH * 3);
+            WalkDownSprite.AddFrame(new Sprite(character, _downX + _downWidth, _downY, _downWidth, _downHeight), RUNNING_ANIMATION_FRAME_DURATION);
+            WalkDownSprite.AddFrame(new Sprite(character, _downX + (2 * _downWidth), _downY, _downWidth, _downHeight), RUNNING_ANIMATION_FRAME_DURATION * 2);
+            WalkDownSprite.AddFrame(new Sprite(character, _downX + (3 * _downWidth), _downY, _downWidth, _downHeight), RUNNING_ANIMATION_FRAME_DURATION * 3);
             WalkDownSprite.Play();
             WalkLeftSprite = new SpriteAnimation();
             WalkLeftSprite.AddFrame(new Sprite(character, _leftX, _leftY, _leftWidth, _leftHeight), 0);
-            WalkLeftSprite.AddFrame(new Sprite(character, _leftX + _leftWidth, _leftY, _leftWidth, _leftHeight), RUNNING_ANIMATION_LENGTH);
-            WalkLeftSprite.AddFrame(new Sprite(character, _leftX + (2 * _leftWidth), _leftY, _leftWidth, _leftHeight), RUNNING_ANIMATION_LENGTH * 2);
-            WalkLeftSprite.AddFrame(new Sprite(character, _leftX + (3 * _leftWidth), _leftY, _leftWidth, _leftHeight), RUNNING_ANIMATION_LENGTH * 3);
+            WalkLeftSprite.AddFrame(new Sprite(character, _leftX + _leftWidth, _leftY, _leftWidth, _leftHeight), RUNNING_ANIMATION_FRAME_DURATION);
+            WalkLeftSprite.AddFrame(new Sprite(character, _leftX + (2 * _leftWidth), _leftY, _leftWidth, _leftHeight), RUNNING_ANIMATION_FRAME_DURATION * 2);
+            WalkLeftSprite.AddFrame(new Sprite(character, _leftX + (3 * _leftWidth), _leftY, _leftWidth, _leftHeight), RUNNING_ANIMATION_FRAME_DURATION * 3);
             WalkLeftSprite.Play();
             WalkRightSprite = new SpriteAnimation();
             WalkRightSprite.AddFrame(new Sprite(character, _rightX, _rightY, _rightWidth, _rightHeight), 0);
-            WalkRightSprite.AddFrame(new Sprite(character, _rightX + _rightWidth, _rightY, _rightWidth, _rightHeight), RUNNING_ANIMATION_LENGTH);
-            WalkRightSprite.AddFrame(new Sprite(character, _rightX + (2 * _rightWidth), _rightY, _rightWidth, _rightHeight), RUNNING_ANIMATION_LENGTH * 2);
-            WalkRightSprite.AddFrame(new Sprite(character, _rightX + (3 * _rightWidth), _rightY, _rightWidth, _rightHeight), RUNNING_ANIMATION_LENGTH * 3);
+            WalkRightSprite.AddFrame(new Sprite(character, _rightX + _rightWidth, _rightY, _rightWidth, _rightHeight), RUNNING_ANIMATION_FRAME_DURATION);
+            WalkRightSprite.AddFrame(new Sprite(character, _rightX + (2 * _rightWidth), _rightY, _rightWidth, _rightHeight), RUNNING_ANIMATION_FRAME_DURATION * 2);
+            WalkRightSprite.AddFrame(new Sprite(character, _rightX + (3 * _rightWidth), _rightY, _rightWidth, _rightHeight), RUNNING_ANIMATION_FRAME_DURATION * 3);
             WalkRightSprite.Play();
 
         }

@@ -1,4 +1,4 @@
-﻿namespace MileniaGameProject.Entities
+﻿namespace MileniaGameProject.SupportFiles
 {
     public enum CharacterState
     {

@@ -1,40 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MileniaGameProject.Entities;
 
-namespace MileniaGameProject.Content.Graphics
+namespace MileniaGameProject.Graphics
 {
+    /// <summary>
+    /// an animation consisting of different frames shown at the appropriate frame
+    /// </summary>
     public class SpriteAnimation
     {
-        private List<SpriteAnimationFrame> _frames = new List<SpriteAnimationFrame>();
+        private readonly List<SpriteAnimationFrame> _frames = new List<SpriteAnimationFrame>();
+        
+        // used to get specific frame but is not used currently
+        public SpriteAnimationFrame this[int index] => GetFrame(index);
 
-        public int MaxWidth = 5000;
-        public SpriteAnimationFrame this[int index]
-        {
-            get
-            {
-                return GetFrame(index);
-
-            }
-
-        }
-
-      
-
+        // used to get framecount but is not used currently
         public int FrameCount => _frames.Count;
 
+        // used in bad update function => get rid of this!
         private bool _goBackwards;
 
+        /// <summary>
+        /// fetches current sprite based on PlaybackProgress
+        /// </summary>
         public SpriteAnimationFrame CurrentFrame
         {
 
             get
             {
-                int i = (int) PlaybackProgress / Character.RUNNING_ANIMATION_LENGTH;
+                int i = PlaybackProgress / Character.RUNNING_ANIMATION_FRAME_DURATION;
                 if (i == _frames.Count)
                 {
                     i -= 1;
@@ -46,6 +43,9 @@ namespace MileniaGameProject.Content.Graphics
 
         }
 
+        /// <summary>
+        /// returns duration of animation
+        /// </summary>
         public float Duration
         {
 
@@ -61,22 +61,23 @@ namespace MileniaGameProject.Content.Graphics
 
         }
 
-        public bool IsPlaying { get; private set; }
+        private bool IsPlaying { get; set; }
 
-        public float PlaybackProgress { get; private set; }
+        private int PlaybackProgress { get; set; }
 
-        public bool ShouldLoop { get; set; } = true;
+        private bool ShouldLoop = true;
 
         public void AddFrame(Sprite sprite, float timeStamp)
         {
-
             SpriteAnimationFrame frame = new SpriteAnimationFrame(sprite, timeStamp);
 
             _frames.Add(frame);
-            if (frame.Sprite.Width < MaxWidth) MaxWidth = frame.Sprite.Width;
-
         }
 
+        /// <summary>
+        /// updates PlaybackProgress to get appropriate frame
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             if(IsPlaying)
@@ -99,7 +100,7 @@ namespace MileniaGameProject.Content.Graphics
 
                     PlaybackProgress += 1;
 
-                    if (PlaybackProgress > Duration + Character.RUNNING_ANIMATION_LENGTH - 1)
+                    if (PlaybackProgress > Duration + Character.RUNNING_ANIMATION_FRAME_DURATION - 1)
                     {
                         if (ShouldLoop)
                             _goBackwards = true;
@@ -153,6 +154,18 @@ namespace MileniaGameProject.Content.Graphics
 
         }
 
+        /// <summary>
+        ///  used to create a simple animation but not used currently
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="startPos"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="offset"></param>
+        /// <param name="frameCount"></param>
+        /// <param name="frameLength"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static SpriteAnimation CreateSimpleAnimation(Texture2D texture, Point startPos, int width, int height, Point offset, int frameCount, float frameLength)
         {
             if (texture == null)

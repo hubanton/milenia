@@ -280,6 +280,7 @@ namespace MileniaGameProject.UserInput
             }
                 
 
+            // needed at next step
             _previousKeyboardState = _keyboardState;
             _previousMouseState = _mouseState;
 

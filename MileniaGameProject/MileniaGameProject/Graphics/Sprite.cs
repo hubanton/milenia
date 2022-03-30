@@ -1,8 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MileniaGameProject.Content.Graphics
+namespace MileniaGameProject.Graphics
 {
+    /// <summary>
+    /// A sprite consists of a texture, its coordinates and its measures
+    /// used for animations
+    /// </summary>
     public class Sprite
     {
         public Texture2D Texture { get; set; }
