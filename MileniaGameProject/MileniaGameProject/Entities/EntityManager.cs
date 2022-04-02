@@ -7,8 +7,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
+    /// <summary>
+    /// Manager of all mananagers
+    /// calls their update and draw functions at every frame
+    /// </summary>
     public class EntityManager
     {
+        /// <summary>
+        /// list containing all managers to call their draw and update functions
+        /// </summary>
         private readonly List<IGameEntity> _entities = new List<IGameEntity>();
         
         private readonly List<IGameEntity> _entitiesToAdd = new List<IGameEntity>();
@@ -18,6 +25,11 @@ namespace MileniaGameProject.Entities
         
         public void Update(GameTime gameTime)
         {
+            foreach (var entity in _entitiesToRemove)
+            {
+                _entities.Remove(entity);
+            }
+
             foreach (var entity in _entities)
             {
                 entity.Update(gameTime);    
@@ -47,7 +59,7 @@ namespace MileniaGameProject.Entities
         public void RemoveEntity(IGameEntity entity)
         {
             if (entity is null)
-                throw new ArgumentNullException(nameof(entity), "You can't delete something that doesn't.");
+                throw new ArgumentNullException(nameof(entity), "You can't delete something that doesn't exist.");
 
             _entitiesToRemove.Add(entity);
 
