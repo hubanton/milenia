@@ -223,48 +223,48 @@ namespace MileniaGameProject.UserInput
                 // considers map and camera position to move the character or the background
                 // (if player approaches border move character else the camera)
                 // also stops the player from walking out of bounds
-                if (_map.canMoveDown &&
+                if (_map.CanMoveDown &&
                     isWalkDownwardsPressed &&
                     _map.CameraPosition.Y < (_map.MapTexture.Height - Milenia.DefaultHeight) && _character.Position.Y >=
                     (Milenia.DefaultHeight - collision.Height) / 2) // need to subtract character height
                 {
                     _map.CameraPosition.Y += _velocity - punish;
                 }
-                else if (_map.canMoveDown &&
+                else if (_map.CanMoveDown &&
                          isWalkDownwardsPressed &&
                          _character.Position.Y <= (Milenia.DefaultHeight - collision.Height))
                 {
                     _character.Position.Y += _velocity - punish;
                 }
 
-                if (_map.canMoveUp &&
+                if (_map.CanMoveUp &&
                     isWalkUpwardsPressed && this._map.CameraPosition.Y > 0 &&
                     _character.Position.Y <= Milenia.DefaultHeight / 2 )
                 {
                     _map.CameraPosition.Y -= _velocity - punish;
                 }
                 else if (
-                    _map.canMoveUp &&
+                    _map.CanMoveUp &&
                     isWalkUpwardsPressed && _character.Position.Y >= 0)
                 {
                     _character.Position.Y -= _velocity - punish;
                 }
 
-                if (_map.canMoveLeft &&
+                if (_map.CanMoveLeft &&
                     isWalkLeftPressed && _map.CameraPosition.X > 0 &&
                     _character.Position.X <= (Milenia.DefaultWidth - collision.Width - TearFix) / 2)
                 {
                     _map.CameraPosition.X -= _velocity - punish;
                 }
                 else if (
-                    _map.canMoveLeft &&
+                    _map.CanMoveLeft &&
                     isWalkLeftPressed && _character.Position.X >= 0)
                 {
                     _character.Position.X -= _velocity - punish;
                 }
 
                 if (
-                    _map.canMoveRight &&
+                    _map.CanMoveRight &&
                     isWalkRightPressed && _map.MapTexture.Width - Milenia.DefaultWidth > 0 &&
                     _map.CameraPosition.X <= (_map.MapTexture.Width - Milenia.DefaultWidth - TearFix) &&
                     _character.Position.X >= (Milenia.DefaultWidth - collision.Width) / 2)
@@ -272,7 +272,7 @@ namespace MileniaGameProject.UserInput
                     _map.CameraPosition.X += _velocity - punish;
                 }
                 else if (
-                    _map.canMoveRight &&
+                    _map.CanMoveRight &&
                     isWalkRightPressed && _character.Position.X <= (Milenia.DefaultWidth - collision.Width))
                 {
                     _character.Position.X += _velocity - punish;
@@ -284,10 +284,10 @@ namespace MileniaGameProject.UserInput
             _previousKeyboardState = _keyboardState;
             _previousMouseState = _mouseState;
 
-            _map.canMoveDown = true;
-            _map.canMoveUp = true;
-            _map.canMoveLeft = true;
-            _map.canMoveRight = true;
+            _map.CanMoveDown = true;
+            _map.CanMoveUp = true;
+            _map.CanMoveLeft = true;
+            _map.CanMoveRight = true;
         }
     }
 }

@@ -6,6 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
+    /// <summary>
+    /// manager for all obstacles that need to be drawn after the player to be in the foreground
+    /// (draworder background obstacle is bigger than draw order character)
+    /// </summary>
     public class ForegroundObstacleManager : IGameEntity
     {
         public int DrawOrder => 4;

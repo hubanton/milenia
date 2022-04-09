@@ -65,7 +65,7 @@ namespace MileniaGameProject.Entities
 
         public Vector2 Position;
 
-        public int hasJustLoaded = 0;
+        public int HasJustLoaded = 0;
 
         public Rectangle CollisionBox
         {
@@ -157,9 +157,9 @@ namespace MileniaGameProject.Entities
                     break;
             }
 
-            if (hasJustLoaded != 0)
+            if (HasJustLoaded != 0)
             {
-                --hasJustLoaded;
+                --HasJustLoaded;
             }
         }
 

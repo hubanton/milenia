@@ -75,22 +75,22 @@ namespace MileniaGameProject.Entities
                     {
                         if (tempRect.X > Map.Character.Position.X)
                         {
-                            Map.canMoveRight = false;
+                            Map.CanMoveRight = false;
                         }
                         else
                         {
-                            Map.canMoveLeft = false;
+                            Map.CanMoveLeft = false;
                         }
                     }
                     else
                     {
                         if (tempRect.Y > Map.Character.Position.Y)
                         {
-                            Map.canMoveDown = false;
+                            Map.CanMoveDown = false;
                         }
                         else
                         {
-                            Map.canMoveUp = false;
+                            Map.CanMoveUp = false;
                         }
                     }
                 }

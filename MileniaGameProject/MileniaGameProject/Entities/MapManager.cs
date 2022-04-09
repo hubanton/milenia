@@ -22,6 +22,14 @@ namespace MileniaGameProject.Entities
             _content = content;
         }
 
+        /// <summary>
+        /// method to load new map based on string map
+        /// (currently hardcoded)
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="character"></param>
+        /// <param name="entryPoints"></param>
+        /// <param name="cameraPosition"></param>
         public void LoadMap(String map, Character character, List<(Rectangle, String)> entryPoints, Vector2 cameraPosition)
         {
             Map = new Map(_content.Load<Texture2D>(map), character, entryPoints, cameraPosition);

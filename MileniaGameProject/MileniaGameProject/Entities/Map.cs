@@ -11,23 +11,33 @@ namespace MileniaGameProject.Entities
     {
         public int DrawOrder => 0;
 
-        public bool canMoveUp = true;
-        public bool canMoveDown = true;
-        public bool canMoveLeft = true;
-        public bool canMoveRight = true;
+        // used to determine whether the player character can move in a given direction
+        // every objects calls a CheckCollision method to manipulate these variables
+        public bool CanMoveUp = true;
+        public bool CanMoveDown = true;
+        public bool CanMoveLeft = true;
+        public bool CanMoveRight = true;
 
-
+    
         public Texture2D MapTexture;
+        
+        // position of the upper left most pixel
         public Vector2 CameraPosition;
 
+        // if the map is smaller than the screen we need this offset to center the map
         private int offsetWidth;
         private int offsetHeight;
+        
+        // minimum of the size of the map and the size of the screen 
+        // used to either draw as much as possible of the map on the screen or only the map if the map is smaller than the screen
         private int drawWidth;
         private int drawHeight;
         
+        // needed to check collision for EntryPoints and obstacles
         public Character Character;
         public Vector2 PlayerPosition;
 
+        // a list of rectangle that describe points to exit/change map
         public List<(Rectangle, String)> EntryPoints;
 
         public Map(Texture2D mapTexture, Character character, List<(Rectangle, String)> entryPoints,
@@ -56,14 +66,18 @@ namespace MileniaGameProject.Entities
                     drawHeight), Color.White);
         }
 
-        [SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH", MessageId = "type: System.Byte[]")]
+        /// <summary>
+        /// used to check whether player intersects with the specified entry points
+        /// then loads the appriopiate map
+        /// (currently hardcoded)
+        /// </summary>
         private void CheckEntryPoints()
         {
             Rectangle sprite = Character.CollisionBox;
             int width = sprite.Width;
             int height = sprite.Height;
 
-            if (EntryPoints != null && Character.hasJustLoaded == 0)
+            if (EntryPoints != null && Character.HasJustLoaded == 0)
             {
                 foreach (var entryPoint in EntryPoints)
                 {
@@ -131,7 +145,7 @@ namespace MileniaGameProject.Entities
                     }
                 }
 
-                Character.hasJustLoaded = 15;
+                Character.HasJustLoaded = 15;
             }
         }
     }
