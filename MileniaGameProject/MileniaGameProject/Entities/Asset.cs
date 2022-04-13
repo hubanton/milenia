@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
+    /// <summary>
+    /// default class for obstacles that have hitboxes and cannot be interacted with
+    /// </summary>
     public class Asset : Obstacle
     {
         private int _sheetX, _sheetY, _sheetWidth, _sheetHeight;
@@ -15,6 +18,16 @@ namespace MileniaGameProject.Entities
         {
             _sheetX = sheetX;
             _sheetY = sheetY;
+            
+            Bounds = bounds;
+            
+            if (obstacleTexture == null)
+            {
+                _sheetWidth = 0;
+                _sheetHeight = 0;
+                return;
+            }
+
             if (sheetWidth != null)
             {
                 _sheetWidth = (int) sheetWidth;
@@ -32,16 +45,18 @@ namespace MileniaGameProject.Entities
             {
                 _sheetHeight = obstacleTexture.Height;
             }
-
-            Bounds = bounds;
         }
         
       
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ObstacleTexture, new Vector2((int) (MapPosition.X - Map.CameraPosition.X),
-                (int) (MapPosition.Y - Map.CameraPosition.Y)), new Rectangle(_sheetX, _sheetY, _sheetWidth, _sheetHeight), Color.White);
+            if (ObstacleTexture != null)
+            {
+                spriteBatch.Draw(ObstacleTexture, new Vector2((int) (MapPosition.X - Map.CameraPosition.X),
+                        (int) (MapPosition.Y - Map.CameraPosition.Y)),
+                    new Rectangle(_sheetX, _sheetY, _sheetWidth, _sheetHeight), Color.White);
+            }
         }
 
 

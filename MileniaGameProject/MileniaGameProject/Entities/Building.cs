@@ -6,12 +6,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
+    /// <summary>
+    /// special obstacle that has entrypoints
+    /// </summary>
     public class Building : Obstacle
     {
 
         private Rectangle _entryPoint;
 
-        
+        /// <summary>
+        /// property that correctly retrieves the rectangle location on the screen
+        /// </summary>
         public Rectangle EntryPoint =>
             new Rectangle((int) Math.Round(MapPosition.X - Map.CameraPosition.X + _entryPoint.X),
                 (int) Math.Round(MapPosition.Y - Map.CameraPosition.Y + _entryPoint.Y), _entryPoint.Width,
@@ -33,6 +38,9 @@ namespace MileniaGameProject.Entities
             }
         }
 
+        /// <summary>
+        /// overridden CheckCollision to account for entrypoints and load a new map appriopiately
+        /// </summary>
         protected override void CheckCollisions()
         {
             List<Rectangle> obstacleCollisionBox = CollisionBox;

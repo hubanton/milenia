@@ -84,7 +84,7 @@ namespace MileniaGameProject.Entities
                 Milenia.ForegroundObstacleManager.SpawnObstacle("pillar8", Map, new Vector2(1300, 1984), null);
                 //Milenia.BackgroundObstacleManager.SpawnObstacle("statue", Map, new Vector2(888, 284), null);
                 
-                Milenia.BuildingManager.SpawnBuilding(null, Map, new Vector2(0, 0), invisibleBounds, Rectangle.Empty);
+                Milenia.BackgroundObstacleManager.SpawnObstacle(null, Map, new Vector2(0, 0), invisibleBounds);
             }
             else if (Map.MapTexture.Name == "TownMap")
             {

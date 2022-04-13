@@ -49,6 +49,13 @@ namespace MileniaGameProject.Entities
 
         public void SpawnObstacle(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds)
         {
+            if (obstacle == null)
+            {
+                Obstacles.Add(new Asset(map, mapPosition, null, 0, 0, null, null,
+                    bounds));
+                return;
+            }
+
             switch (obstacle)
             {
                 case("stone1"): 

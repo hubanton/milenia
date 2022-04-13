@@ -6,11 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
+    /// <summary>
+    /// Manager of all buildings
+    /// </summary>
     public class BuildingManager : IGameEntity
     {
         public int DrawOrder => 3;
-        
-        public List<Building> Buildings = new List<Building>();
+
+        private List<Building> _buildings = new List<Building>();
 
         private ContentManager _content;
 
@@ -19,22 +22,30 @@ namespace MileniaGameProject.Entities
             _content = content;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obstacle"></param>
+        /// <param name="map"></param>
+        /// <param name="mapPosition"></param>
+        /// <param name="bounds"></param>
+        /// <param name="entryPoint"></param>
         public void SpawnBuilding(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds, Rectangle entryPoint)
         {
             if (obstacle == null)
             {
-                Buildings.Add(new Building(map, mapPosition, null, bounds, entryPoint));
+                _buildings.Add(new Building(map, mapPosition, null, bounds, entryPoint));
             }
             else
             {
-                Buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
+                _buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
             }
         }
 
 
         public void ClearList()
         {
-            Buildings = new List<Building>();
+            _buildings = new List<Building>();
         }
         public void RemoveBuilding(Building building)
         {
@@ -43,7 +54,7 @@ namespace MileniaGameProject.Entities
 
         public void Update(GameTime gameTime)
         {
-            foreach (var building in Buildings)
+            foreach (var building in _buildings)
             {
                 building.Update(gameTime);
             }
@@ -51,7 +62,7 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach (var building in Buildings)
+            foreach (var building in _buildings)
             {
                 
                 building.Draw(gameTime, spriteBatch);
