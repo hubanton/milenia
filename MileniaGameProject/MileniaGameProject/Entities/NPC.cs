@@ -6,17 +6,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
+    /// <summary>
+    /// class for npcs that can be interacted with
+    /// </summary>
     public class NPC : IGameEntity, ICollidable
     {
         public int DrawOrder => 5;
 
-        private Map _map;
-        private Vector2 _mapPosition;
-        private Texture2D _npcTexture;
-        private Rectangle bound;
-        private SpriteFont _npcFont;
-        private Texture2D DialogBox;
-        private string _textToShow;
+        private readonly Map _map;
+        private readonly Vector2 _mapPosition;
+        private readonly Texture2D _npcTexture;
+        private readonly Rectangle _bound;
+        private readonly SpriteFont _npcFont;
+        private readonly Texture2D _dialogBox;
+        private readonly string _textToShow;
         public bool CanTalkTo = false;
         public bool IsTalking = false;
 
@@ -24,9 +27,9 @@ namespace MileniaGameProject.Entities
         {
             get
             {
-                Rectangle box = new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + bound.X),
-                    (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + bound.Y), bound.Width,
-                    bound.Height);
+                Rectangle box = new Rectangle((int) Math.Round(_mapPosition.X - _map.CameraPosition.X + _bound.X),
+                    (int) Math.Round(_mapPosition.Y - _map.CameraPosition.Y + _bound.Y), _bound.Width,
+                    _bound.Height);
 
                 return box;
             }
@@ -37,9 +40,10 @@ namespace MileniaGameProject.Entities
             _map = map;
             _mapPosition = mapPosition;
             _npcTexture = npcTexture;
-            bound = new Rectangle(0, 0, npcTexture.Width, npcTexture.Height);
+            _bound = new Rectangle(0, 0, npcTexture.Width, npcTexture.Height);
             _npcFont = npcFont;
-            DialogBox = dialogBox;
+            _dialogBox = dialogBox;
+            // find better way to load text
             using(StreamReader reader = new StreamReader(@"C:\Users\Willi\Desktop\milenia\MileniaGameProject\MileniaGameProject\Content\Dialog\JoeText.txt"))
             {
                 _textToShow = reader.ReadToEnd();
@@ -58,12 +62,15 @@ namespace MileniaGameProject.Entities
                 (int) (_mapPosition.Y - _map.CameraPosition.Y)), Color.White);
             if (IsTalking)
             {
-                spriteBatch.Draw(DialogBox, new Vector2((float) (Milenia.DefaultWidth / 5), Milenia.DefaultHeight * 2 / 3), Color.White);
+                spriteBatch.Draw(_dialogBox, new Vector2((float) (Milenia.DefaultWidth / 5), Milenia.DefaultHeight * 2 / 3), Color.White);
                 spriteBatch.DrawString(_npcFont, _textToShow, new Vector2(Milenia.DefaultWidth / 5 + 40, Milenia.DefaultHeight * 2 / 3 + 40), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 
-        protected virtual void CheckCollisions()
+        /// <summary>
+        /// checks if player collides with that npc and prevents the player from further moving in that direction
+        /// </summary>
+        private void CheckCollisions()
         {
             Rectangle npcCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = _map.Character.CollisionBox;
@@ -97,6 +104,9 @@ namespace MileniaGameProject.Entities
             }
         }
 
+        /// <summary>
+        /// checks if player is in range to interact with npc
+        /// </summary>
         private void CheckInteractable()
         {
             Point npcPoint = CollisionBox.Center;

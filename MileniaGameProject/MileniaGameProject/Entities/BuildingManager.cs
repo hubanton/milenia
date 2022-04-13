@@ -23,7 +23,8 @@ namespace MileniaGameProject.Entities
         }
 
         /// <summary>
-        /// 
+        /// spawns a building
+        /// throws an exception if no string for texture is given
         /// </summary>
         /// <param name="obstacle"></param>
         /// <param name="map"></param>
@@ -34,12 +35,10 @@ namespace MileniaGameProject.Entities
         {
             if (obstacle == null)
             {
-                _buildings.Add(new Building(map, mapPosition, null, bounds, entryPoint));
+                throw new NullReferenceException();
             }
-            else
-            {
-                _buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
-            }
+
+            _buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
         }
 
 
@@ -47,6 +46,7 @@ namespace MileniaGameProject.Entities
         {
             _buildings = new List<Building>();
         }
+        
         public void RemoveBuilding(Building building)
         {
             //removes Building from List of Building and maybe more?

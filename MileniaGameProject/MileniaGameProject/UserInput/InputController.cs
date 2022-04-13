@@ -170,11 +170,11 @@ namespace MileniaGameProject.UserInput
                     {
                         if (number != Keys.D0)
                         {
-                            UserInterface.curInvSelection = (int) number - ((int) Keys.D0 + 1);
+                            UserInterface.CurInvSelection = (int) number - ((int) Keys.D0 + 1);
                         }
                         else
                         {
-                            UserInterface.curInvSelection = 9;
+                            UserInterface.CurInvSelection = 9;
                         }
                     }
                 }
@@ -182,10 +182,10 @@ namespace MileniaGameProject.UserInput
                 // changes item selection based on scroll wheel 
                 if (_mouseState.ScrollWheelValue > _previousScrollValue)
                 {
-                    UserInterface.curInvSelection = ++UserInterface.curInvSelection % 10;
+                    UserInterface.CurInvSelection = ++UserInterface.CurInvSelection % 10;
                 } else if (_mouseState.ScrollWheelValue < _previousScrollValue)
                 {
-                    UserInterface.curInvSelection = UserInterface.curInvSelection != 0 ? --UserInterface.curInvSelection : 9;
+                    UserInterface.CurInvSelection = UserInterface.CurInvSelection != 0 ? --UserInterface.CurInvSelection : 9;
                 }
                 _previousScrollValue = _mouseState.ScrollWheelValue;
 

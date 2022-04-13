@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MileniaGameProject.Entities
 {
+    /// <summary>
+    /// manager of all npcs
+    /// </summary>
     public class NPCManager : IGameEntity
     {
         public int DrawOrder
@@ -31,6 +34,7 @@ namespace MileniaGameProject.Entities
             DialogBox = content.Load<Texture2D>("DialogTextbox");
             NPCFont = npcFont;
         }
+        
         
         public void SpawnNPC(String npc, Map map, Vector2 mapPosition)
         {
@@ -61,6 +65,10 @@ namespace MileniaGameProject.Entities
             }
         }
 
+        /// <summary>
+        /// check which npcs are in range to interact with and returns that npc or null if there is none
+        /// </summary>
+        /// <returns></returns>
         public NPC FindTalkableNPC()
         {
             foreach (var npc in NPCs)
