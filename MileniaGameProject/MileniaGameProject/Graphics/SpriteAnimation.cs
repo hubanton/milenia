@@ -20,9 +20,6 @@ namespace MileniaGameProject.Graphics
         // used to get framecount but is not used currently
         public int FrameCount => _frames.Count;
 
-        // used in bad update function => get rid of this!
-        private bool _goBackwards;
-
         /// <summary>
         /// fetches current sprite based on PlaybackProgress
         /// </summary>
@@ -46,7 +43,7 @@ namespace MileniaGameProject.Graphics
         /// <summary>
         /// returns duration of animation
         /// </summary>
-        public float Duration
+        public int Duration
         {
 
             get
@@ -67,7 +64,7 @@ namespace MileniaGameProject.Graphics
 
         private bool ShouldLoop = true;
 
-        public void AddFrame(Sprite sprite, float timeStamp)
+        public void AddFrame(Sprite sprite, int timeStamp)
         {
             SpriteAnimationFrame frame = new SpriteAnimationFrame(sprite, timeStamp);
 
@@ -80,34 +77,19 @@ namespace MileniaGameProject.Graphics
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            if(IsPlaying)
+            if (!IsPlaying) return;
+            
+            PlaybackProgress += 1;
+
+            if (PlaybackProgress <= Duration) return;
+                
+            if (ShouldLoop)
             {
-
-                if (_goBackwards)
-                {
-                    PlaybackProgress -= 1;
-
-                    if (PlaybackProgress == 0)
-                    {
-                        if (ShouldLoop)
-                            _goBackwards = false;
-                        else
-                            Stop();
-                    }
-                }
-                else
-                {
-
-                    PlaybackProgress += 1;
-
-                    if (PlaybackProgress > Duration + Character.RUNNING_ANIMATION_FRAME_DURATION - 1)
-                    {
-                        if (ShouldLoop)
-                            _goBackwards = true;
-                        else
-                            Stop();
-                    }
-                }
+                PlaybackProgress = 0;
+            }
+            else
+            {
+                IsPlaying = false;
             }
 
         }
@@ -166,7 +148,7 @@ namespace MileniaGameProject.Graphics
         /// <param name="frameLength"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static SpriteAnimation CreateSimpleAnimation(Texture2D texture, Point startPos, int width, int height, Point offset, int frameCount, float frameLength)
+        public static SpriteAnimation CreateSimpleAnimation(Texture2D texture, Point startPos, int width, int height, Point offset, int frameCount, int frameLength)
         {
             if (texture == null)
                 throw new ArgumentNullException(nameof(texture));
@@ -183,8 +165,10 @@ namespace MileniaGameProject.Graphics
 
             }
 
+            anim.IsPlaying = true;
+                
             return anim;
-
+            
         } 
     }
 }

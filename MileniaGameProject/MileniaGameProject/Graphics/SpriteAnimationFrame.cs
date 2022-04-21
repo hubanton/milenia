@@ -14,9 +14,9 @@ namespace MileniaGameProject.Graphics
             private set => _sprite = value ?? throw new ArgumentNullException("value", "The sprite cannot be null.");
         }
         
-        public float TimeStamp { get; }
+        public int TimeStamp { get; }
 
-        public SpriteAnimationFrame(Sprite sprite, float timeStamp)
+        public SpriteAnimationFrame(Sprite sprite, int timeStamp)
         {
             Sprite = sprite;
             TimeStamp = timeStamp;
