@@ -9,5 +9,7 @@ namespace MileniaGameProject.Entities
     public interface ICollidables
     {
         List<Rectangle> CollisionBox { get; }
+        
+        void CheckCollisions();
     }
 }

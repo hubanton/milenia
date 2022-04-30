@@ -170,5 +170,28 @@ namespace MileniaGameProject.Graphics
             return anim;
             
         } 
+        
+        public static SpriteAnimation CreateAnimation(Texture2D texture, Point startPos, int[] width, int[] height, Point offset, int frameCount, int frameLength)
+        {
+            if (texture == null)
+                throw new ArgumentNullException(nameof(texture));
+
+            SpriteAnimation anim = new SpriteAnimation();
+
+            for(int i = 0; i < frameCount; i++)
+            {
+                Sprite sprite = new Sprite(texture, startPos.X + i * offset.X, startPos.Y + i * offset.Y, width[i], height[i]);
+                anim.AddFrame(sprite, frameLength * i);
+
+                if (i == frameCount - 1)
+                    anim.AddFrame(sprite, frameLength * (i + 1));
+
+            }
+
+            anim.IsPlaying = true;
+                
+            return anim;
+            
+        }
     }
 }

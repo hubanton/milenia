@@ -12,7 +12,7 @@ namespace MileniaGameProject.Entities
     /// </summary>
     public class Character : IGameEntity, ICollidable
     {
-        public int DrawOrder => 2;
+        public int DrawOrder => 3;
 
         private readonly Sprite _idleSprite;
         private readonly SpriteAnimation _walkUpAnimation;
@@ -102,15 +102,14 @@ namespace MileniaGameProject.Entities
                         width = _idleSprite.Width; height = _idleSprite.Height;
                         break;
                 }
-                
 
-                Rectangle box = new Rectangle((int) Position.X, (int) Position.Y, width, height);
+                 int actHeight = (int) (0.5 * height);
+
+                Rectangle box = new Rectangle((int) Position.X, (int) Position.Y + actHeight, width, actHeight);
                 return box;
             }
         }
 
-        
-        
         public Character(Texture2D character, Vector2 pos)
         {
             Position = pos;
@@ -193,6 +192,9 @@ namespace MileniaGameProject.Entities
             
         }
 
-
+        public void CheckCollisions()
+        {
+            // not needed for character
+        }
     }
 }

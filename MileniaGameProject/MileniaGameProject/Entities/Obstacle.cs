@@ -60,7 +60,7 @@ namespace MileniaGameProject.Entities
         /// <summary>
         /// checks if player collides with that obstacle and prevents the player from further moving in that direction
         /// </summary>
-        protected virtual void CheckCollisions()
+        public virtual void CheckCollisions()
         {
             List<Rectangle> obstacleCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = Map.Character.CollisionBox;
@@ -73,7 +73,7 @@ namespace MileniaGameProject.Entities
 
                     if (tempRect.Width <= tempRect.Height)
                     {
-                        if (tempRect.X > Map.Character.Position.X)
+                        if (tempRect.X > characterCollisionBox.X)
                         {
                             Map.CanMoveRight = false;
                         }
@@ -84,7 +84,7 @@ namespace MileniaGameProject.Entities
                     }
                     else
                     {
-                        if (tempRect.Y > Map.Character.Position.Y)
+                        if (tempRect.Y > characterCollisionBox.Y)
                         {
                             Map.CanMoveDown = false;
                         }

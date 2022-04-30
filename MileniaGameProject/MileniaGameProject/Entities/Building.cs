@@ -41,7 +41,7 @@ namespace MileniaGameProject.Entities
         /// <summary>
         /// overridden CheckCollision to account for entrypoints and load a new map appriopiately
         /// </summary>
-        protected override void CheckCollisions()
+        public override void CheckCollisions()
         {
             List<Rectangle> obstacleCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = Map.Character.CollisionBox;
@@ -66,7 +66,7 @@ namespace MileniaGameProject.Entities
 
                         if (tempRect.Width <= tempRect.Height)
                         {
-                            if (tempRect.X > Map.Character.Position.X)
+                            if (tempRect.X > characterCollisionBox.X)
                             {
                                 Map.CanMoveRight = false;
                             }
@@ -77,7 +77,7 @@ namespace MileniaGameProject.Entities
                         }
                         else
                         {
-                            if (tempRect.Y > Map.Character.Position.Y)
+                            if (tempRect.Y > characterCollisionBox.Y)
                             {
                                 Map.CanMoveDown = false;
                             }

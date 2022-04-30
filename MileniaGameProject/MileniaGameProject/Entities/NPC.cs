@@ -70,7 +70,7 @@ namespace MileniaGameProject.Entities
         /// <summary>
         /// checks if player collides with that npc and prevents the player from further moving in that direction
         /// </summary>
-        private void CheckCollisions()
+        public void CheckCollisions()
         {
             Rectangle npcCollisionBox = CollisionBox;
             Rectangle characterCollisionBox = _map.Character.CollisionBox;
@@ -81,7 +81,7 @@ namespace MileniaGameProject.Entities
 
                 if (tempRect.Width <= tempRect.Height)
                 {
-                    if (tempRect.X > _map.Character.Position.X)
+                    if (tempRect.X > characterCollisionBox.X)
                     {
                         _map.CanMoveRight = false;
                     }
@@ -92,7 +92,7 @@ namespace MileniaGameProject.Entities
                 }
                 else
                 {
-                    if (tempRect.Y > _map.Character.Position.Y)
+                    if (tempRect.Y > characterCollisionBox.Y)
                     {
                         _map.CanMoveDown = false;
                     }
