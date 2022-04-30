@@ -17,10 +17,10 @@ namespace MileniaGameProject
         private SpriteBatch _spriteBatch;
         
         // collects all managers and calls their update/draw functions at each frame
-        private EntityManager _entityManager;
+        public static EntityManager EntityManager;
 
         // all Manager objects that control the update/draw functions of all objects of their domain
-        private Character _character;
+        public static Character Character;
         private UserInterface _userInterface;
         private ToggleInterface _toggleInterface;
         public static MapManager MapManager;
@@ -57,7 +57,7 @@ namespace MileniaGameProject
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             // Causes the Window to fit the screen size
-            _graphics.IsFullScreen = (2 < 3);
+            _graphics.IsFullScreen = (2 > 3);
             // Tabbing outside of Screen no longer collapses Window
             _graphics.HardwareModeSwitch = false;
 
@@ -75,7 +75,7 @@ namespace MileniaGameProject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // loads manager objects and assets for the game
-            _character = new Character(Content.Load<Texture2D>("char"),
+            Character = new Character(Content.Load<Texture2D>("char"),
                 new Vector2(DefaultWidth / 2, DefaultHeight / 2));
 
             _userInterface =
@@ -95,17 +95,17 @@ namespace MileniaGameProject
             List<(Rectangle, String)> entryPoints = new List<(Rectangle, string)>();
             entryPoints.Add((new Rectangle(0, 580, 1, 100), "TownMap"));
             entryPoints.Add((new Rectangle(2399, 800, 1, 100), "TowerMap"));
-            MapManager.LoadMap("PlayerBaseProto", _character, entryPoints, Vector2.Zero);
+            MapManager.LoadMap("PlayerBaseProto", Character, entryPoints, Vector2.Zero);
             
-            _entityManager = new EntityManager();
-            _entityManager.AddEntity(_character);
-            _entityManager.AddEntity(MapManager);
-            _entityManager.AddEntity(BuildingManager);
-            _entityManager.AddEntity(NPCManager);
-            _entityManager.AddEntity(ForegroundObstacleManager);
-            _entityManager.AddEntity(BackgroundObstacleManager);
-            _entityManager.AddEntity(_userInterface);
-            _entityManager.AddEntity(_toggleInterface);
+            EntityManager = new EntityManager();
+            EntityManager.AddEntity(Character);
+            EntityManager.AddEntity(MapManager);
+            EntityManager.AddEntity(BuildingManager);
+            EntityManager.AddEntity(NPCManager);
+            EntityManager.AddEntity(ForegroundObstacleManager);
+            EntityManager.AddEntity(BackgroundObstacleManager);
+            EntityManager.AddEntity(_userInterface);
+            EntityManager.AddEntity(_toggleInterface);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace MileniaGameProject
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _entityManager.Update(gameTime);
+            EntityManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -134,7 +134,7 @@ namespace MileniaGameProject
             GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin(transformMatrix: _scaleMatrix);
-            _entityManager.Draw(_spriteBatch, gameTime);
+            EntityManager.Draw(_spriteBatch, gameTime);
             _spriteBatch.End();
 
             base.Draw(gameTime);

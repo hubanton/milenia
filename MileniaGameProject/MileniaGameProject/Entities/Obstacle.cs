@@ -10,8 +10,8 @@ namespace MileniaGameProject.Entities
         /// <summary>
         /// abstract class from which all objects inherit
         /// </summary>
-        public int DrawOrder => 4;
-        
+        public abstract int DrawOrder { get; }
+
         protected readonly Map Map;
         protected Vector2 MapPosition;
         protected readonly Texture2D ObstacleTexture;

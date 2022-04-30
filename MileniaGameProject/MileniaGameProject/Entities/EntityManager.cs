@@ -16,7 +16,7 @@ namespace MileniaGameProject.Entities
         /// <summary>
         /// list containing all managers to call their draw and update functions
         /// </summary>
-        private readonly List<IGameEntity> _entities = new List<IGameEntity>();
+        public readonly List<IGameEntity> _entities = new List<IGameEntity>();
         
         private readonly List<IGameEntity> _entitiesToAdd = new List<IGameEntity>();
         private readonly List<IGameEntity> _entitiesToRemove = new List<IGameEntity>();
@@ -29,16 +29,23 @@ namespace MileniaGameProject.Entities
             {
                 _entities.Remove(entity);
             }
+            _entitiesToRemove.Clear();
 
             foreach (var entity in _entities)
             {
                 entity.Update(gameTime);    
             }
+            
+            foreach (var entity in _entitiesToAdd)
+            {
+                _entities.Add(entity);
+            }
+            _entitiesToAdd.Clear();
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach(IGameEntity entity in _entities.OrderBy(e => e.DrawOrder))
+            foreach(var entity in _entities.OrderBy(e => e.DrawOrder))
             {
 
                 entity.Draw(gameTime, spriteBatch);
@@ -52,7 +59,7 @@ namespace MileniaGameProject.Entities
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity), "Null cannot be added as an entity.");
 
-            _entities.Add(entity);
+            _entitiesToAdd.Add(entity);
 
         }
 

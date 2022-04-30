@@ -31,14 +31,15 @@ namespace MileniaGameProject.Entities
         /// <param name="mapPosition"></param>
         /// <param name="bounds"></param>
         /// <param name="entryPoint"></param>
-        public void SpawnBuilding(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds, Rectangle entryPoint)
+        /// <param name="layerThreshold"></param>
+        public void SpawnBuilding(String obstacle, Map map, Vector2 mapPosition, List<Rectangle> bounds, Rectangle entryPoint, int layerThreshold)
         {
             if (obstacle == null)
             {
                 throw new NullReferenceException();
             }
 
-            _buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint));
+            _buildings.Add(new Building(map, mapPosition, _content.Load<Texture2D>(obstacle), bounds, entryPoint, layerThreshold));
         }
 
 

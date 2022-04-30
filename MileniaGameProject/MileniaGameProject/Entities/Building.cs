@@ -12,7 +12,21 @@ namespace MileniaGameProject.Entities
     public class Building : Obstacle
     {
 
+        public override int DrawOrder {
+            get
+            {
+                if (Milenia.Character.Position.Y < MapPosition.Y - Map.CameraPosition.Y + _layerThreshold)
+                {
+                    return 4;
+                }
+
+                return 2;
+            }
+        }
+        
         private Rectangle _entryPoint;
+
+        private int _layerThreshold;
 
         /// <summary>
         /// property that correctly retrieves the rectangle location on the screen
@@ -23,10 +37,11 @@ namespace MileniaGameProject.Entities
                 _entryPoint.Height);
         
 
-        public Building(Map map, Vector2 mapPosition, Texture2D obstacleTexture, List<Rectangle> bounds, Rectangle entryPoint) : base(map, mapPosition, obstacleTexture)
+        public Building(Map map, Vector2 mapPosition, Texture2D obstacleTexture, List<Rectangle> bounds, Rectangle entryPoint, int layerThreshold) : base(map, mapPosition, obstacleTexture)
         {
             if (bounds != null) Bounds = bounds;
             _entryPoint = entryPoint;
+            _layerThreshold = layerThreshold;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

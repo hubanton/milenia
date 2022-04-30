@@ -42,7 +42,8 @@ namespace MileniaGameProject.Entities
                 List<Rectangle> archBounds = new List<Rectangle>();
                 archBounds.Add(new Rectangle(40, 765, 200, 175));
                 archBounds.Add(new Rectangle(400, 765, 200, 175));
-                Milenia.BuildingManager.SpawnBuilding("Arch", Map, new Vector2(680, 600), archBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(680, 600), _content.Load<Texture2D>("Arch"), 
+                    archBounds, Rectangle.Empty, 750));
                 List<Rectangle> invisibleBounds = new List<Rectangle>()
                 {
                     new Rectangle(0, 0, 175, 5500),//passt
@@ -94,10 +95,12 @@ namespace MileniaGameProject.Entities
                 // Houses
                 List<Rectangle> settlerBounds = new List<Rectangle>();
                 settlerBounds.Add(new Rectangle(75, 285, 1010, 315));
-                Milenia.BuildingManager.SpawnBuilding("houses/SettlerHouse", Map, new Vector2(5186, 2500), settlerBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(5186, 2500), _content.Load<Texture2D>("houses/SettlerHouse"), 
+                    settlerBounds, Rectangle.Empty, 250));
                 List<Rectangle> survavilistBounds = new List<Rectangle>();
                 survavilistBounds.Add(new Rectangle(28, 230, 456, 260));
-                Milenia.BuildingManager.SpawnBuilding("houses/SurvavilistHouse", Map, new Vector2(5645, 320), survavilistBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(5645, 320), _content.Load<Texture2D>("houses/SurvavilistHouse"), 
+                    survavilistBounds, Rectangle.Empty, 250));
                 List<Rectangle> smithBounds = new List<Rectangle>();
                 smithBounds.Add(new Rectangle(28, 225, 456, 260));
                 smithBounds.Add(new Rectangle(16, 338, 84, 120));
@@ -106,44 +109,56 @@ namespace MileniaGameProject.Entities
                 smithBounds.Add(new Rectangle(660, 263, 200, 142));
                 smithBounds.Add(new Rectangle(884, 324, 124, 56));
                 smithBounds.Add(new Rectangle(880, 424, 136, 84));
-                Milenia.BuildingManager.SpawnBuilding("houses/Blacksmith", Map, new Vector2(5310, 1280), smithBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(5310, 1280), _content.Load<Texture2D>("houses/Blacksmith"), 
+                    smithBounds, Rectangle.Empty, 250));
                 List<Rectangle> shopkeeperBounds = new List<Rectangle>();
                 shopkeeperBounds.Add(new Rectangle(44, 200, 916, 272));
-                Milenia.BuildingManager.SpawnBuilding("houses/ShopkeeperHouse", Map, new Vector2(3755, 2748), shopkeeperBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(3755, 2748), _content.Load<Texture2D>("houses/ShopkeeperHouse"), 
+                    shopkeeperBounds, Rectangle.Empty, 250));
                 List<Rectangle> townhallBounds = new List<Rectangle>();
                 townhallBounds.Add(new Rectangle(320, 555, 1400, 360));
-                Milenia.BuildingManager.SpawnBuilding("houses/Townhall", Map, new Vector2(2178, 384), townhallBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(2178, 384), _content.Load<Texture2D>("houses/Townhall"), 
+                    townhallBounds, Rectangle.Empty, 500));
                 List<Rectangle> bakeryBounds = new List<Rectangle>();
                 bakeryBounds.Add(new Rectangle(240, 216, 708, 264));
                 bakeryBounds.Add(new Rectangle(276, 480, 12, 24));
                 bakeryBounds.Add(new Rectangle(664, 480, 12, 24));
-                Milenia.BuildingManager.SpawnBuilding("houses/Bakery", Map, new Vector2(1785, 3020), bakeryBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(1785, 3020), _content.Load<Texture2D>("houses/Bakery"), 
+                    bakeryBounds, Rectangle.Empty, 250));
                 List<Rectangle> thiefHouseBounds = new List<Rectangle>();
                 thiefHouseBounds.Add(new Rectangle(28, 280, 456, 212));
                 thiefHouseBounds.Add(new Rectangle(80, 492, 32, 20));
                 thiefHouseBounds.Add(new Rectangle(232, 492, 32, 20));
-                Milenia.BuildingManager.SpawnBuilding("houses/ThiefHouse", Map, new Vector2(60, 2808), thiefHouseBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(60, 2808), _content.Load<Texture2D>("houses/ThiefHouse"), 
+                    thiefHouseBounds, Rectangle.Empty, 250));
                 List<Rectangle> churchBounds = new List<Rectangle>();
                 churchBounds.Add(new Rectangle(40, 1200, 1000, 784));
-                Milenia.BuildingManager.SpawnBuilding("houses/Church", Map, new Vector2(1360, 4), churchBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(1360, 4), _content.Load<Texture2D>("houses/Church"), 
+                    churchBounds, Rectangle.Empty, 1800));
                 List<Rectangle> tavernBounds = new List<Rectangle>();
                 tavernBounds.Add(new Rectangle(28, 750, 456, 254));
-                Milenia.BuildingManager.SpawnBuilding("houses/Tavern", Map, new Vector2(332, 996), tavernBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(332, 996), _content.Load<Texture2D>("houses/Tavern"), 
+                    tavernBounds, Rectangle.Empty, 650));
                 List<Rectangle> harlequinHouseBounds = new List<Rectangle>();
                 harlequinHouseBounds.Add(new Rectangle(36, 240, 448, 224));
-                Milenia.BuildingManager.SpawnBuilding("houses/Harlequin", Map, new Vector2(112, 740), harlequinHouseBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(112, 740), _content.Load<Texture2D>("houses/Harlequin"), 
+                    harlequinHouseBounds, Rectangle.Empty, 250));
                 List<Rectangle> oracleHouseBounds = new List<Rectangle>();
                 oracleHouseBounds.Add(new Rectangle(75, 240, 729, 268));
-                Milenia.BuildingManager.SpawnBuilding("houses/OracleHouse", Map, new Vector2(48, 47), oracleHouseBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(48, 47), _content.Load<Texture2D>("houses/OracleHouse"), 
+                    oracleHouseBounds, Rectangle.Empty, 250));
                 List<Rectangle> fanaticOneBounds = new List<Rectangle>();
                 fanaticOneBounds.Add(new Rectangle(60, 320, 393, 216));
-                Milenia.BuildingManager.SpawnBuilding("houses/FanaticHouse", Map, new Vector2(4197, 125), fanaticOneBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(4197, 125), _content.Load<Texture2D>("houses/FanaticHouse"), 
+                    fanaticOneBounds, Rectangle.Empty, 250));
                 List<Rectangle> fanaticTwoBounds = new List<Rectangle>();
                 fanaticTwoBounds.Add(new Rectangle(60, 320, 393, 216));
-                Milenia.BuildingManager.SpawnBuilding("houses/FanaticHouse", Map, new Vector2(4197, 725), fanaticTwoBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(4197, 725), _content.Load<Texture2D>("houses/FanaticHouse"), 
+                    fanaticTwoBounds, Rectangle.Empty, 250));
                 List<Rectangle> fanaticThreeBounds = new List<Rectangle>();
                 fanaticThreeBounds.Add(new Rectangle(60, 320, 393, 216));
-                Milenia.BuildingManager.SpawnBuilding("houses/FanaticHouse", Map, new Vector2(4197, 1325), fanaticThreeBounds, Rectangle.Empty);
+                Milenia.EntityManager.AddEntity(new Building(Map, new Vector2(4197, 1325), _content.Load<Texture2D>("houses/FanaticHouse"), 
+                    fanaticThreeBounds, Rectangle.Empty, 250));
             }
 
             _inputController = new InputController(character, Map);

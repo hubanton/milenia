@@ -10,6 +10,8 @@ namespace MileniaGameProject.Entities
     /// </summary>
     public class Asset : Obstacle
     {
+        public override int DrawOrder => 2;
+        
         private int _sheetX, _sheetY, _sheetWidth, _sheetHeight;
 
 
@@ -46,8 +48,6 @@ namespace MileniaGameProject.Entities
                 _sheetHeight = obstacleTexture.Height;
             }
         }
-        
-      
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
