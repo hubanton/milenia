@@ -38,7 +38,7 @@ namespace MileniaGameProject.Entities
         
         public void SpawnNPC(String npc, Map map, Vector2 mapPosition)
         {
-            NPCs.Add(new NPC(map, mapPosition, _content.Load<Texture2D>(npc), NPCFont, DialogBox));
+            NPCs.Add(new NPC(map, mapPosition, _content.Load<Texture2D>(npc), NPCFont, DialogBox, _content.Load<Texture2D>(npc + "Portrait")));
         }
         public void ClearList()
         {

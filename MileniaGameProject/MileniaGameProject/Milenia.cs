@@ -57,7 +57,7 @@ namespace MileniaGameProject
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             // Causes the Window to fit the screen size
-            _graphics.IsFullScreen = (2 > 3);
+            _graphics.IsFullScreen = (2 < 3);
             // Tabbing outside of Screen no longer collapses Window
             _graphics.HardwareModeSwitch = false;
 

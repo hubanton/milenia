@@ -19,6 +19,8 @@ namespace MileniaGameProject.Entities
         private readonly Rectangle _bound;
         private readonly SpriteFont _npcFont;
         private readonly Texture2D _dialogBox;
+        private readonly int _dialogBoxOffset = 15;
+        private readonly Texture2D _npcPortrait;
         private readonly string _textToShow;
         public bool CanTalkTo = false;
         public bool IsTalking = false;
@@ -35,7 +37,7 @@ namespace MileniaGameProject.Entities
             }
         }
 
-        public NPC(Map map, Vector2 mapPosition, Texture2D npcTexture, SpriteFont npcFont, Texture2D dialogBox)
+        public NPC(Map map, Vector2 mapPosition, Texture2D npcTexture, SpriteFont npcFont, Texture2D dialogBox, Texture2D npcPortrait)
         {
             _map = map;
             _mapPosition = mapPosition;
@@ -43,6 +45,7 @@ namespace MileniaGameProject.Entities
             _bound = new Rectangle(0, 0, npcTexture.Width, npcTexture.Height);
             _npcFont = npcFont;
             _dialogBox = dialogBox;
+            _npcPortrait = npcPortrait;
             // find better way to load text
             using(StreamReader reader = new StreamReader(@"C:\Users\Willi\Desktop\milenia\MileniaGameProject\MileniaGameProject\Content\Dialog\JoeText.txt"))
             {
@@ -62,8 +65,9 @@ namespace MileniaGameProject.Entities
                 (int) (_mapPosition.Y - _map.CameraPosition.Y)), Color.White);
             if (IsTalking)
             {
-                spriteBatch.Draw(_dialogBox, new Vector2((float) (Milenia.DefaultWidth / 5), Milenia.DefaultHeight * 2 / 3), Color.White);
-                spriteBatch.DrawString(_npcFont, _textToShow, new Vector2(Milenia.DefaultWidth / 5 + 40, Milenia.DefaultHeight * 2 / 3 + 40), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(_dialogBox, new Vector2((float) (Milenia.DefaultWidth / 5), Milenia.DefaultHeight * 2 / 3 - _dialogBoxOffset), Color.White);
+                spriteBatch.Draw(_npcPortrait, new Vector2((float) (Milenia.DefaultWidth / 5) + 685, Milenia.DefaultHeight * 2 / 3 + 20 - _dialogBoxOffset), Color.White);
+                spriteBatch.DrawString(_npcFont, _textToShow, new Vector2(Milenia.DefaultWidth / 5 + 40, Milenia.DefaultHeight * 2 / 3 + 40 - _dialogBoxOffset), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 

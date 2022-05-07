@@ -37,7 +37,7 @@ namespace MileniaGameProject.Entities
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (InputController.GameState == GameState.Inventory || InputController.GameState == GameState.Skilltree)
+            if (InputController.GameState == GameState.Inventory || InputController.GameState == GameState.Skilltree || InputController.GameState == GameState.Talking)
             {
                 spriteBatch.Draw(_blackBox, Vector2.Zero, Color.White * 0.5f);
             }
